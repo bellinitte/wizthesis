@@ -61,7 +61,10 @@
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 \RequirePackage{afterpage}
-\RequirePackage{xstring,xifthen}
+\RequirePackage{xstring,xifthen} % \ifthenelse
+\RequirePackage{array} % \newcolumntype
+\RequirePackage{multirow}
+\RequirePackage{stackengine} % \addstackgap
 
 \newgeometry{margin=2.5cm}
 
@@ -101,17 +104,29 @@
 \newcommand{\slowakluczowe}[1]{\renewcommand{\@keywordspl}{#1}}
 \newcommand{\@abstracten}
   {No abstract\ClassWarning{wizthesis}{No english abstract provided, use \string\abstract}}
-\newcommand{\abstract}[1]{\renewcommand{\@keywordsen}{#1}}
+\newcommand{\abstract}[1]{\renewcommand{\@abstracten}{#1}}
 \newcommand{\@abstractpl}
   {Brak streszczenia\ClassWarning{wizthesis}{No polish abstract provided, use \string\streszczenie}}
-\newcommand{\streszczenie}[1]{\renewcommand{\@keywordspl}{#1}}
+\newcommand{\streszczenie}[1]{\renewcommand{\@abstractpl}{#1}}
 
-\newcommand{\@maxtitlelength}{30}
+\newcommand{\@titlelengthlimit}{60}
+\newcommand{\@keywordslengthlimit}{150}
+\newcommand{\@summarylengthlimita}{400}
+\newcommand{\@summarylengthlimitb}{500}
+\newcommand{\@supervisorlengthlimita}{28}
+\newcommand{\@supervisorlengthlimitb}{32}
+\newcommand{\@supervisorlengthlimitc}{36}
+
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\def\dotfill#1{\cleaders\hbox to #1{.}\hfill}
+\newcommand{\dotline}[2][.5em]{\leavevmode\hbox to #2{\dotfill{#1}\hfil}}
 
 \newcommand{\@titlepagepl}{
   \thispagestyle{empty}
   \afterpage{
-    \newgeometry{left=4.85cm, right=2.5cm, top=4.55cm, bottom=2.85cm}
+    \newgeometry{left=4.85cm, right=2.85cm, top=4.55cm, bottom=2.5cm}
     \noindent\begin{tikzpicture}[remember picture,overlay,inner sep=0pt,outer sep=0pt]
       \begin{scope}[shift={($ (current page.north west) + (4.5,-4.5) $)}]
         \path[fill=black] (0,0) -| (-2,2) -| (0,0.04) -|
@@ -611,11 +626,11 @@
         \path[fill=gray!20] (0,0) rectangle ($ (current page.south west) + (2.5,2.5) $);
       \end{scope}
     \end{tikzpicture}%
-    \textbf{Wydział Informatyki i Zarządzania}\\
-    Kierunek studiów: \@fieldofstudypl\\
-    Specjalność: \@specialtypl\\
-    \vspace{5cm}
-    \begin{minipage}[t][0.46\textheight]{\textwidth}
+    \textbf{Wydział Informatyki i Zarządzania}\par
+    \noindent Kierunek studiów: \@fieldofstudypl\par
+    \noindent Specjalność: \@specialtypl\par
+    \vspace{0.8cm}
+    \noindent\begin{minipage}[t][0.5\textheight]{\textwidth}
       \begin{center}
         \large Praca dyplomowa
         \ifengineering{--- inżynierska}\else
@@ -627,7 +642,7 @@
         \fi \\
         \vspace{.6cm plus .5fill}
         \StrLen{\@titlepl}[\@titlepllength]
-        \ifthenelse{\@titlepllength > \@maxtitlelength}{
+        \ifthenelse{\@titlepllength > \@titlelengthlimit}{
           \large\textbf{\MakeUppercase{\@titlepl}}\\
         }{
           \Large\textbf{\MakeUppercase{\@titlepl}}\\
@@ -635,7 +650,123 @@
         \vspace{0.6cm plus .2fill}
         \large\@author
       \end{center}
+      \vspace{0.1cm plus .2fill}
+      \begin{flushright}
+        \small
+        słowa kluczowe:\\
+        \vspace{1ex}
+        \begin{minipage}{7cm}
+          \StrLen{\@keywordspl}[\@keywordspllength]
+          \ifthenelse{\@keywordspllength > \@keywordslengthlimit}{
+            \footnotesize\@keywordspl
+          }{
+            \@keywordspl
+          }
+        \end{minipage}
+      \end{flushright}
+      \vspace{0.07cm plus 0.2fill}
+      \begin{flushleft}
+        \small krótkie streszczenie:\\[1ex]
+        \StrLen{\@summarypl}[\@summarypllength]
+        \ifthenelse{\@summarypllength > \@summarylengthlimitb}{
+          \parbox{\textwidth}{\scriptsize\@summarypl}
+        }{
+          \ifthenelse{\@summarypllength > \@summarylengthlimita}{
+            \parbox{\textwidth}{\footnotesize\@summarypl}
+          }{
+            \parbox{\textwidth}{\@summarypl}
+          }
+        }
+      \end{flushleft}
     \end{minipage}
+    \vspace{\fill}
+    \begin{flushleft}
+      \begin{minipage}[b][0.33\textheight]{\textwidth}
+        \begin{center}
+          \begin{tabular}{|P{2.35cm}|P{6cm}|C{1.15cm}|C{2cm}|}
+            \hline
+            \multirow{2}{2.35cm}{\footnotesize Opiekun pracy dyplomowej}
+            &
+            \StrLen{\@supervisor}[\@supervisorlength]
+            \ifthenelse{\@supervisorlength > \@supervisorlengthlimitc}{
+              \scriptsize\addstackgap[6pt]{\@supervisor}
+            }{
+              \ifthenelse{\@supervisorlength > \@supervisorlengthlimitb}{
+                \footnotesize\addstackgap[6pt]{\@supervisor}
+              }{
+                \ifthenelse{\@supervisorlength > \@supervisorlengthlimita}{
+                  \small\addstackgap[6pt]{\@supervisor}
+                }{
+                  \addstackgap[6pt]{\@supervisor}
+                }
+              }
+            }
+            &
+            \vspace{-2pt}
+            \dotline[3pt]{32pt}
+            &
+            \vspace{-2pt}
+            \dotline[3pt]{58pt}
+            \\
+            \cline{2-4} 
+            &
+            \scriptsize Tytuł/stopień naukowy/imię i nazwisko
+            &
+            \footnotesize ocena             
+            &
+            \footnotesize podpis                    
+            \\
+            \hline
+          \end{tabular}\par
+          \vspace{0.5cm}
+          \small Ostateczna ocena za pracę dyplomową
+          \begin{tabular}{|P{2.35cm}|P{6cm}|C{1.15cm}|C{2cm}|}
+            \hline
+            \multirow{2}{2.35cm}{\scriptsize Przewodniczący Komisji egzaminu dyplomowego}
+            &
+            \vspace{-2pt}
+            \dotline[3pt]{150pt}
+            &
+            \vspace{-2pt}
+            \dotline[3pt]{32pt}
+            &
+            \vspace{-2pt}
+            \dotline[3pt]{58pt}
+            \\
+            \cline{2-4} 
+            &
+            \scriptsize Tytuł/stopień naukowy/imię i nazwisko
+            &
+            \footnotesize ocena             
+            &
+            \footnotesize podpis                    
+            \\
+            \hline
+          \end{tabular}
+        \end{center}
+        \vspace{-2ex}
+        \emph{
+          \footnotesize
+          \begin{flushleft}
+            Do celów archiwalnych pracę dyplomową zakwalifikowano do:*
+            \vspace{-1ex}
+            \begin{enumerate}
+              \itemsep0em
+              \item[a)] kategorii A (akta wieczyste)
+              \item[b)] kategorii BE 50 (po 50 latach podlegające ekspertyzie)
+            \end{enumerate}
+            \vspace{-1ex}
+            * niepotrzebne skreślić
+          \end{flushleft}
+        }
+        \begin{flushright}
+          \boxed{~~~\textrm{pieczątka wydziałowa}~~~}
+        \end{flushright}
+        \begin{center}
+          \large Wrocław, rok \the\year
+        \end{center}
+      \end{minipage}
+    \end{flushleft}
     \clearpage
   }
 }
