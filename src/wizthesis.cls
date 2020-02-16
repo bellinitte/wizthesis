@@ -1,14 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{wizthesis}[2019/12/21 WIZ PWr thesis class]
 
-\DeclareOption{fleqn}{\PassOptionsToClass{fleqn}{book}}
-\DeclareOption{leqno}{\PassOptionsToClass{leqno}{book}}
-\DeclareOption{openbib}{\PassOptionsToClass{openbib}{book}}
-\DeclareOption{draft}{\PassOptionsToClass{draft}{book}}
-\DeclareOption{final}{\PassOptionsToClass{final}{book}}
-\DeclareOption{openright}{\PassOptionsToClass{openright}{book}}
-\DeclareOption{openany}{\PassOptionsToClass{openany}{book}}
-
 \DeclareOption{titlepage}
   {\ClassWarning{book}{Title page always generated. Option ignored}}
 \DeclareOption{notitlepage}
@@ -42,10 +34,14 @@
 \DeclareOption{twoside}
   {\ClassWarning{wizthesis}{Option 'twoside' superfluous. Ignored}}
 
-\ProcessOptions
-\LoadClass[12pt,twoside]{book}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
+
+\ProcessOptions\relax
+\LoadClass[12pt,a4paper,onecolumn,twoside]{book}
 
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{polski}
-\RequirePackage[a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\RequirePackage{geometry}
+
+\newgeometry{margin=2.5cm}
