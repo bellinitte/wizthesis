@@ -52,7 +52,6 @@
 \LoadClass[12pt,a4paper,onecolumn,twoside]{book}
 
 \RequirePackage[utf8]{inputenc}
-\RequirePackage[T1]{fontenc}
 \RequirePackage{polski}
 \RequirePackage[pass]{geometry}
 \RequirePackage{amsmath,amsfonts,amssymb,amsthm}
@@ -62,11 +61,11 @@
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 \RequirePackage{afterpage}
-\RequirePackage{xstring,xifthen} % \ifthenelse
+\RequirePackage{xstring,xifthen} % \StrLen, \ifthenelse
 \RequirePackage{array} % \newcolumntype
 \RequirePackage{multirow}
 \RequirePackage{stackengine} % \addstackgap
-\RequirePackage{mathptmx} % Times New Roman font
+\RequirePackage{newtxtext,newtxmath} % Times New Roman font
 
 \newgeometry{margin=2.5cm}
 
@@ -629,7 +628,7 @@
     \hrule height 0pt
     \vspace{\fill}%
     \hrule height 0pt
-    \StrLen{\@title}[\@titlepllength]
+    \StrLen{\string\@title}[\@titlepllength]
     \ifthenelse{\@titlepllength > \@titlelengthlimit}{
       \large\textbf{\MakeUppercase{\@title}}\\
     }{
@@ -644,7 +643,8 @@
     \begin{flushright}
       \small słowa kluczowe:\\[1ex]
       \begin{minipage}{7cm}
-        \StrLen{\@keywords}[\@keywordspllength]
+        % Use \string to \StrLen text containing the 'ą' character with the newtxtext package
+        \StrLen{\string\@keywords}[\@keywordspllength]
         \ifthenelse{\@keywordspllength > \@keywordslengthlimit}{
           \footnotesize\@keywords
         }{
@@ -654,7 +654,7 @@
     \end{flushright}
     \begin{flushleft}
       \small krótkie streszczenie:\\[1ex]
-      \StrLen{\@summary}[\@summarypllength]
+      \StrLen{\string\@summary}[\@summarypllength]
       \ifthenelse{\@summarypllength > \@summarylengthlimitb}{
         \parbox{\textwidth}{\scriptsize\@summary}
       }{
@@ -670,7 +670,7 @@
       \hline
       \multirow{2}{*}{\parbox{2.35cm}{\footnotesize Opiekun pracy\\dyplomowej}}
       &
-      \StrLen{\@supervisor}[\@supervisorlength]%
+      \StrLen{\string\@supervisor}[\@supervisorlength]%
       \ifthenelse{\@supervisorlength > \@supervisorlengthlimitc}{%
         \scriptsize\addstackgap[6pt]{\@supervisor}%
       }{%
