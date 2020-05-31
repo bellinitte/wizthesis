@@ -23,9 +23,3 @@
 *.synctex(busy)
 *.pdf
 .vscode/
-# temporary
-temp/
-bibliography_style.bst
-bibliography.bib
-example.tex
-logo_w13.jpg

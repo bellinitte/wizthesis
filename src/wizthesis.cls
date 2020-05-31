@@ -1,13 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{wizthesis}[2020/02/16 WIZ PWr thesis class]
 
-\newif\ifpolski
-\newif\ifmasters
-\newif\ifbachelors
+\newif\ifpolish
+\newif\ifenglish
 \newif\ifengineering
+\newif\ifbachelors
+\newif\ifmasters
 
-\DeclareOption{english}{\polskifalse}
-\DeclareOption{polski}{\polskitrue}
+\DeclareOption{polish}{\polishtrue}
+\DeclareOption{english}{\englishtrue}
 \DeclareOption{masters}{\masterstrue}
 \DeclareOption{bachelors}{\bachelorstrue}
 \DeclareOption{engineering}{\engineeringtrue}
@@ -71,43 +72,26 @@
 \renewcommand{\@author}
   {Anonymous\ClassWarning{wizthesis}{No author provided, use \string\author}}
 \renewcommand{\author}[1]{\renewcommand{\@author}{#1}}
-\newcommand{\@titleen}
-  {Untitled\ClassWarning{wizthesis}{No english title provided, use \string\title}}
-\renewcommand{\title}[1]{\renewcommand{\@titleen}{#1}}
-\newcommand{\@titlepl}
-  {Bez tytułu\ClassWarning{wizthesis}{No polish title provided, use \string\tytul}}
-\newcommand{\tytul}[1]{\renewcommand{\@titlepl}{#1}}
+\renewcommand{\@title}
+  {Untitled\ClassWarning{wizthesis}{No title provided, use \string\title}}
+\renewcommand{\title}[1]{\renewcommand{\@title}{#1}}
 \newcommand{\@supervisor}
   {Anonymous\ClassWarning{wizthesis}{No supervisor provided, use \string\supervisor}}
 \newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
-\newcommand{\@fieldofstudyen}
-  {No field of study\ClassWarning{wizthesis}{No english field of study provided, use \string\fieldofstudy}}
-\newcommand{\fieldofstudy}[1]{\renewcommand{\@fieldofstudyen}{#1}}
-\newcommand{\@fieldofstudypl}
-  {Brak kierunku\ClassWarning{wizthesis}{No polish field of study provided, use \string\kierunek}}
-\newcommand{\kierunek}[1]{\renewcommand{\@fieldofstudypl}{#1}}
-\newcommand{\@specialtyen}{---}
-\newcommand{\specialty}[1]{\renewcommand{\@specialtyen}{#1}}
-\newcommand{\@specialtypl}{---}
-\newcommand{\specjalnosc}[1]{\renewcommand{\@specialtypl}{#1}}
-\newcommand{\@summaryen}
-  {No summary\ClassWarning{wizthesis}{No english summary provided, use \string\summary}}
-\newcommand{\summary}[1]{\renewcommand{\@summaryen}{#1}}
-\newcommand{\@summarypl}
-  {Brak streszczenia\ClassWarning{wizthesis}{No polish summary provided, use \string\krotkiestreszczenie}}
-\newcommand{\krotkiestreszczenie}[1]{\renewcommand{\@summarypl}{#1}}
-\newcommand{\@keywordsen}
-  {No keywords\ClassWarning{wizthesis}{No english keywords provided, use \string\keywords}}
-\newcommand{\keywords}[1]{\renewcommand{\@keywordsen}{#1}}
-\newcommand{\@keywordspl}
-  {Brak słów kluczowych\ClassWarning{wizthesis}{No polish keywords provided, use \string\slowakluczowe}}
-\newcommand{\slowakluczowe}[1]{\renewcommand{\@keywordspl}{#1}}
-\newcommand{\@abstracten}
-  {No abstract\ClassWarning{wizthesis}{No english abstract provided, use \string\abstract}}
-\newcommand{\abstract}[1]{\renewcommand{\@abstracten}{#1}}
-\newcommand{\@abstractpl}
-  {Brak streszczenia\ClassWarning{wizthesis}{No polish abstract provided, use \string\streszczenie}}
-\newcommand{\streszczenie}[1]{\renewcommand{\@abstractpl}{#1}}
+\newcommand{\@fieldofstudy}
+  {No field of study\ClassWarning{wizthesis}{No field of study provided, use \string\fieldofstudy}}
+\newcommand{\fieldofstudy}[1]{\renewcommand{\@fieldofstudy}{#1}}
+\newcommand{\@specialty}{---}
+\newcommand{\specialty}[1]{\renewcommand{\@specialty}{#1}}
+\newcommand{\@summary}
+  {No summary\ClassWarning{wizthesis}{No summary provided, use \string\summary}}
+\newcommand{\summary}[1]{\renewcommand{\@summary}{#1}}
+\newcommand{\@keywords}
+  {No keywords\ClassWarning{wizthesis}{No keywords provided, use \string\keywords}}
+\newcommand{\keywords}[1]{\renewcommand{\@keywords}{#1}}
+\newcommand{\@abstract}
+  {No abstract\ClassWarning{wizthesis}{No abstract provided, use \string\abstract}}
+\newcommand{\abstract}[1]{\renewcommand{\@abstract}{#1}}
 
 \newcommand{\@titlelengthlimit}{60}
 \newcommand{\@keywordslengthlimit}{150}
@@ -627,8 +611,8 @@
       \end{scope}
     \end{tikzpicture}%
     \textbf{Wydział Informatyki i Zarządzania}\\
-    Kierunek studiów: \@fieldofstudypl\\
-    Specjalność: \@specialtypl
+    Kierunek studiów: \@fieldofstudy\\
+    Specjalność: \@specialty
     \hrule height 0pt
     \vspace{\fill}
     \hrule height 0pt
@@ -637,18 +621,18 @@
     \ifengineering{--- inżynierska}\else
       \ifbachelors{--- licencjacka}\else
         \ifmasters{--- magisterska}\else
-          \ClassWarning{wizthesis}{No thesis type specified in the options of the \string\documentclass}
+          \ClassWarning{wizthesis}{No thesis type specified in the options of the \string\documentclass, use either engineering, bachelors or masters}
         \fi
       \fi
     \fi \\
     \hrule height 0pt
     \vspace{\fill}%
     \hrule height 0pt
-    \StrLen{\@titlepl}[\@titlepllength]
+    \StrLen{\@title}[\@titlepllength]
     \ifthenelse{\@titlepllength > \@titlelengthlimit}{
-      \large\textbf{\MakeUppercase{\@titlepl}}\\
+      \large\textbf{\MakeUppercase{\@title}}\\
     }{
-      \Large\textbf{\MakeUppercase{\@titlepl}}\\
+      \Large\textbf{\MakeUppercase{\@title}}\\
     }
     \hrule height 0pt
     \vspace{\fill}
@@ -659,24 +643,24 @@
     \begin{flushright}
       \small słowa kluczowe:\\[1ex]
       \begin{minipage}{7cm}
-        \StrLen{\@keywordspl}[\@keywordspllength]
+        \StrLen{\@keywords}[\@keywordspllength]
         \ifthenelse{\@keywordspllength > \@keywordslengthlimit}{
-          \footnotesize\@keywordspl
+          \footnotesize\@keywords
         }{
-          \@keywordspl
+          \@keywords
         }
       \end{minipage}
     \end{flushright}
     \begin{flushleft}
       \small krótkie streszczenie:\\[1ex]
-      \StrLen{\@summarypl}[\@summarypllength]
+      \StrLen{\@summary}[\@summarypllength]
       \ifthenelse{\@summarypllength > \@summarylengthlimitb}{
-        \parbox{\textwidth}{\scriptsize\@summarypl}
+        \parbox{\textwidth}{\scriptsize\@summary}
       }{
         \ifthenelse{\@summarypllength > \@summarylengthlimita}{
-          \parbox{\textwidth}{\footnotesize\@summarypl}
+          \parbox{\textwidth}{\footnotesize\@summary}
         }{
-          \parbox{\textwidth}{\@summarypl}
+          \parbox{\textwidth}{\@summary}
         }
       }
     \end{flushleft}
@@ -712,7 +696,7 @@
     {\small Ostateczna ocena za pracę dyplomową}
     \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
       \hline
-      \multirow{2}{*}{\parbox{2.35cm}{\scriptsize Przewodniczący Komisji egzaminu dyplomowego}}
+      \multirow{2}{*}{\parbox{2.35cm}{\scriptsize Przewodniczący\\Komisji egzaminu\\dyplomowego}}
       &
       \small\dotline[3pt]{150pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       &
@@ -753,13 +737,11 @@
   \clearpage
 }
 
-\ifpolski
+\ifpolish
   \AtBeginDocument{\renewcommand\tablename{Tabela}}
   \renewcommand{\maketitle}{
     \pagenumbering{gobble}
       \@titlepagepl
-    \cleardoublepage
-      \@titlepageen
     \cleardoublepage
   }
 \else
