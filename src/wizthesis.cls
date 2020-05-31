@@ -66,6 +66,7 @@
 \RequirePackage{array} % \newcolumntype
 \RequirePackage{multirow}
 \RequirePackage{stackengine} % \addstackgap
+\RequirePackage{mathptmx} % Times New Roman font
 
 \newgeometry{margin=2.5cm}
 
@@ -667,7 +668,7 @@
     \hrule height 0pt
     \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
       \hline
-      \multirow{2}{*}{\parbox{2.35cm}{\footnotesize Opiekun pracy dyplomowej}}
+      \multirow{2}{*}{\parbox{2.35cm}{\footnotesize Opiekun pracy\\dyplomowej}}
       &
       \StrLen{\@supervisor}[\@supervisorlength]%
       \ifthenelse{\@supervisorlength > \@supervisorlengthlimitc}{%
@@ -684,9 +685,9 @@
         }%
       }%
       &
-      \small\dotline[3pt]{32pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \small\dotline[2.7pt]{32pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       &
-      \small\dotline[3pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \small\dotline[2.7pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       \\
       \cline{2-4}
       & \scriptsize Tytuł/stopień naukowy/imię i nazwisko & \footnotesize ocena & \footnotesize podpis \\
@@ -698,11 +699,11 @@
       \hline
       \multirow{2}{*}{\parbox{2.35cm}{\scriptsize Przewodniczący\\Komisji egzaminu\\dyplomowego}}
       &
-      \small\dotline[3pt]{150pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \small\dotline[2.7pt]{150pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       &
-      \small\dotline[3pt]{32pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \small\dotline[2.7pt]{32pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       &
-      \small\dotline[3pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \small\dotline[2.7pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       \\
       \cline{2-4}
       & \scriptsize Tytuł/stopień naukowy/imię i nazwisko & \footnotesize Ocena & \footnotesize podpis \\
