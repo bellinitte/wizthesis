@@ -52,7 +52,6 @@
 \LoadClass[12pt,a4paper,onecolumn,twoside]{book}
 
 \RequirePackage[utf8]{inputenc}
-\RequirePackage{polski}
 \RequirePackage[pass]{geometry}
 \RequirePackage{amsmath,amsfonts,amssymb,amsthm}
 \RequirePackage{caption}
@@ -66,6 +65,8 @@
 \RequirePackage{multirow}
 \RequirePackage{stackengine} % \addstackgap
 \RequirePackage{newtxtext,newtxmath} % Times New Roman font
+\RequirePackage[nottoc]{tocbibind} % Bibliography in the TOC
+\RequirePackage{emptypage} % Remove page numbering for clear pages
 
 \newgeometry{margin=2.5cm}
 
@@ -742,13 +743,15 @@
   \AtBeginDocument{\renewcommand\tablename{Tabela}}
   \renewcommand{\maketitle}{
     \pagenumbering{gobble}
-      \@titlepagepl
+    \@titlepagepl
     \cleardoublepage
   }
 \else
   \renewcommand{\maketitle}{
     \pagenumbering{gobble}
-      \@titlepageen
+    \@titlepageen
     \cleardoublepage
   }
 \fi
+
+\pagestyle{plain}
