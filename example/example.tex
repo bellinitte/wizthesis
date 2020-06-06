@@ -1,10 +1,13 @@
-\documentclass[12pt,a4paper,polish,engineering]{wizthesis}
+\documentclass[polish,engineering]{wizthesis}
 
+\usepackage{blindtext} % Lorem ipsum filler text
+
+% Set up the thesis
 \author{Imię i nazwisko dyplomanta}
 \title{Tytuł pracy dyplomowej}
 \supervisor{prof. dr hab. Jan Kowalski}
 \fieldofstudy{Informatyka}
-\keywords{tutaj podajemy najważniejsze słowa kluczowe (łącznie nie powinny być dłuższe niż 150 znaków)}
+\keywords{tutaj podajemy najważniejsze słowa kluczowe (łącznie nie powinny być dłuższe niż 150 znaków).}
 \summary{
 Tutaj piszemy krótkie streszczenie pracy (nie powinno być dłuższe niż 530 znaków).
 Sed et risus lorem. Etiam faucibus, nisi eget tempor accumsan, magna nunc pharetra lacus,
@@ -14,12 +17,143 @@ In vestibulum nibh quis nulla tempus, gravida ornare velit pulvinar.
 Nunc rhoncus nisi in turpis dignissim venenatis. Nunc sapien.
 }
 
+% Set up the style of code listings, optional
+\setminted{frame=single,breaklines,linenos}
+
+
+
+
 \begin{document}
 
-\frontmatter
-\maketitle
-\mainmatter
 
-test
+\frontmatter % Disable page and chapter numbering
+
+
+\maketitle
+
+% \chapter* removes both abstracts from the table of contents
+\chapter*{Streszczenie}
+
+W tym miejscu umieszczamy streszczenie w języku polskim. \blindtext
+
+{\let\clearpage\relax\chapter*{Abstract}} % Keep the english abstract on the same page
+
+And here's the abstract in English. \blindtext
+
+
+\tableofcontents
+
+
+\chapter{Wstęp}
+
+We wstępie zapowiadamy, o czym będzie praca. Próbujemy zachęcić czytelnika do dalszej lektury, np. krótko informując, dlaczego wybraliśmy właśnie ten temat i co nas w nim zainteresowało. \blindtext[2] \par \blindtext
+
+
+\mainmatter % Re-enable page and chapter numbering
+
+
+\chapter{Rozdział pierwszy}
+
+Tabela \ref{tab:przykladowa} przedstawia przykładową tabelę. Do tworzenia tabeli służą m.in. środowiska \texttt{tabular} oraz \texttt{table}. Istnieje możliwość numeracji dwustopniowej, gdzie pierwsza cyfra oznacza numer rozdziału, a druga – kolejny numer tabeli w tym rozdziale. Tytuł powinien znajdować się centralnie nad tabelą, $12$ pkt odstępu od tekstu zasadniczego nad i pod tabelą wraz z tytułem. Jeśli tabela jest cytowana – należy podać centralnie pod tabelą źródło jej pochodzenia, np. opracowanie własne, opracowano na podstawie danych z GUS.
+\begin{table}[ht]
+  \caption{Podstawowa tabela}
+  \centering
+  \begin{tabular}{ccc}
+    \hline
+    \hline
+    Państwo & PKB (w milionach USD) & Stopa bezrobocia \\ [0.5ex]
+    \hline
+    Stany Zjednoczone & 75 278 049 & 4,60\% \\
+    Chiny             & 11 218 281 & 4,10\% \\
+    Japonia           & 4 938 644  & 3,10\% \\
+    Niemcy            & 3 466 639  & 6,00\% \\
+    Wielka Brytania   & 2 629 188  & 4,60\% \\ [1ex]
+    \hline
+  \end{tabular}
+  \caption*{\textit{Źródło: opracowanie własne}}
+  \label{tab:przykladowa} 
+\end{table}
+
+Do cytowania używamy komendy \texttt{cite}. W nawiasie klamrowym podajemy klucz, którego użyliśmy w pliku \emph{bibliografia.bib}. Przykład: \cite{einstein} lub \cite[chap. 2]{latexcompanion}.
+
+
+\section{Podrozdział pierwszy}
+
+\begin{table}[ht]
+  \caption{Podstawowa tabela}
+  \centering
+  \begin{tabular}{ccc}
+    \hline
+    \hline
+    Państwo & PKB (w milionach USD) & Stopa bezrobocia \\ [0.5ex]
+    \hline
+    Stany Zjednoczone & 75 278 049 & 4,60\% \\
+    Chiny             & 11 218 281 & 4,10\% \\
+    Japonia           & 4 938 644  & 3,10\% \\
+    Niemcy            & 3 466 639  & 6,00\% \\
+    Wielka Brytania   & 2 629 188  & 4,60\% \\ [1ex]
+    \hline
+  \end{tabular}
+  \caption*{\textit{Źródło: opracowanie własne}}
+  \label{tab:przykladowa2} 
+\end{table}
+
+No to może równanie?
+
+\begin{equation}
+  E = mc^2
+\end{equation}
+
+
+\section{Podrozdział drugi}
+
+Rysunki do pracy dyplomowej należy wstawiać w sposób podobny do wstawiania tabel, z zasadniczą różnicą polegającą na tym, że podpis powinno umieszczać się centralnie pod rysunkiem, a nie powyżej niego. Numeracja i sposób cytowania pozostają bez zmian, przy czym tabele i rysunki nie mają numeracji wspólnej, np. po Tabeli \ref{tab:przykladowa2} występuje Rysunek \ref{rys:przykladowy} (o ile jest to pierwszy rysunek rozdziału pierwszego), a nie Rysunek $1.3$.
+\begin{figure}[ht]
+  \centering                  
+  \includegraphics[width=0.4\textwidth]{img/iz_logo.png}
+  \caption{Podstawowy rysunek}
+  \label{rys:przykladowy}
+\end{figure}
+
+W moim kodzie zrobiłem coś niesamowitego.
+\begin{listing}[ht]
+  \begin{minted}{c}
+#include <stdio.h>
+
+int main(void)
+{
+  printf("Hello World\n");
+  return 0;
+}
+  \end{minted}
+  \caption{Niesamowity kod}
+  \label{lst:listing}
+\end{listing}
+
+\Blindtext
+
+
+{\backmatter\chapter{Zakończenie}} % Disable this chapter number
+
+W zakończeniu co udało nam się zrobić w pracy, a czasem także o tym, czego nie udało się zrobić. \blindtext[2]
+
+
+\bibliographystyle{acm}
+\bibliography{bibliography.bib}
+
+\listoffigures
+
+\listoftables
+
+\listoflistings
+
+\appendixpage
+
+
+\appendix
+
+\chapter{Załącznik}
+
+Dodatek w pracach matematycznych również nie jest wymagany. Można w nim przedstawić np. jakiś dłuższy dowód, który z pewnych przyczyn pominęliśmy we właściwej części pracy lub (np. w przypadku prac statystycznych) umieścić dane, które analizowaliśmy.
 
 \end{document}
