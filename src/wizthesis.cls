@@ -67,6 +67,11 @@
 \RequirePackage{newtxtext,newtxmath} % Times New Roman font
 \RequirePackage[nottoc]{tocbibind} % Bibliography in the TOC
 \RequirePackage{emptypage} % Remove page numbering for clear pages
+\RequirePackage{titlesec} % Chapter and section headings
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage[toc]{appendix}
+\RequirePackage{minted}
+\RequirePackage{chngcntr} % Counter within minted listings
 
 \newgeometry{margin=2.5cm}
 
@@ -740,7 +745,13 @@
 }
 
 \ifpolish
-  \AtBeginDocument{\renewcommand\tablename{Tabela}}
+  \AtBeginDocument{
+    \RequirePackage{polski}
+    \RequirePackage{indentfirst}
+    \renewcommand\appendixtocname{Załącznik}
+    \renewcommand\appendixpagename{Załącznik}
+    \renewcommand\listoflistingscaption{Spis listingów}
+  }
   \renewcommand{\maketitle}{
     \pagenumbering{gobble}
     \@titlepagepl
@@ -755,3 +766,18 @@
 \fi
 
 \pagestyle{plain}
+
+\titleformat{\chapter}{\large\bfseries}{\thechapter.}{1em}{}
+\titleformat{\section}{\fontsize{13}{15.6}\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}{\normalsize}{\thesubsection.}{1em}{}
+\titleformat{\subsubsection}{\normalsize}{}{1em}{}
+
+\setlength\parindent{0.7cm}
+
+\counterwithin{listing}{chapter}
+\renewcommand{\listoflistings}{
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\listoflistingscaption}
+  \listof{listing}{\listoflistingscaption}
+}
