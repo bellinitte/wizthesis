@@ -21,5 +21,8 @@
 *.nav
 *.synctex.gz
 *.synctex(busy)
+*.lol
+*.lop
+_minted*/
 *.pdf
 .vscode/
