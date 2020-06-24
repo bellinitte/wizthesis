@@ -47,7 +47,7 @@ To set up the information about the thesis, use the following commands in the pr
 
 ## Also see
 
-- WojciechThomas/praca_inzynierska_latex and tugot17/Bachelor-Thesis-Latex-Template &ndash; main alternatives to wizthesis, although less compliant with the rules of editing when it comes to spacings, and with no English language support,
+- [praca_inzynierska_latex](https://github.com/WojciechThomas/praca_inzynierska_latex) and [Bachelor-Thesis-Latex-Template](https://github.com/tugot17/Bachelor-Thesis-Latex-Template) &ndash; main alternatives to wizthesis, although less compliant with the rules of editing when it comes to spacings, and with no English language support,
 - [formatka.zip](http://wmat.pwr.edu.pl/fcp/FGBUKOQtTKlQhbx08SlkTVwJQX2o8DAoHNiwFE1wZDyEPG1gnBVcoFW8SBDRKTxMKRy0SODwBBAEIMQheCFVAORFCHzY/46/public/doc/dziekanat/dyplomanci/formatka.zip) &ndash; the official LaTeX document class of the Faculty of Pure and Applied Mathematics by Damian Fafuła and many others; the main inspiration for wizthesis,
 - [dyplom.zip](http://kmim.wm.pwr.edu.pl/myszka/wp-content/uploads/sites/2/2014/07/dyplom.zip) &ndash; the official LaTeX document class of the Faculty of Mechanical Engineering by Wojciech Myszka.
 - [Szablon2017.zip](https://cs.pwr.edu.pl/cichon/MaterialyDydaktyczne/Szablon2017.zip) &ndash; LaTeX template for the Faculty of Fundamental Problems of Technology by Tomasz Strzałka.
