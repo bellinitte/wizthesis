@@ -69,7 +69,7 @@
 \RequirePackage{emptypage} % Remove page numbering for clear pages
 \RequirePackage{titlesec} % Chapter and section headings
 \RequirePackage[hidelinks]{hyperref}
-\RequirePackage[toc]{appendix}
+\RequirePackage{appendix}
 \RequirePackage[newfloat]{minted}
 \RequirePackage[font=small]{caption}
 \RequirePackage{float} % 'H' float positioning
@@ -1766,5 +1766,12 @@
 \setlength\floatsep{10pt}
 \setlength\textfloatsep{10pt}
 \setlength\intextsep{10pt}
+\setlength\abovedisplayskip{10pt}
+\setlength\belowdisplayskip{10pt}
 
 \captionsetup[listing]{skip=0pt}
+
+% Redefinition of the appendices environment to include the \@mainmattertrue
+% for re-enabling chapter numbering for the appendices
+\let\oldappendices\appendices
+\def\appendices{\@mainmattertrue\oldappendices}
