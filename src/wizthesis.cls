@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{wizthesis}[2020/06/23 WIZ PWr thesis class]
+\ProvidesClass{wizthesis}[2020/06/24 WIZ PWr thesis class]
 
 \newif\ifpolish
 \newif\ifenglish
@@ -45,18 +45,17 @@
   {\ClassWarning{wizthesis}{Option 'oneside' not available for wizthesis}}
 \DeclareOption{twoside}
   {\ClassWarning{wizthesis}{Option 'twoside' superfluous. Ignored}}
+\DeclareOption{leqno}
+  {\ClassWarning{wizthesis}{Option 'leqno' not available for wizthesis}}
+\DeclareOption{fleqn}
+  {\ClassWarning{wizthesis}{Option 'fleqn' not available for wizthesis}}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 
 \ProcessOptions\relax
 \LoadClass[12pt,a4paper,onecolumn,twoside]{book}
 
-\RequirePackage[utf8]{inputenc}
 \RequirePackage[pass]{geometry}
-\RequirePackage{amsmath,amsfonts,amssymb,amsthm}
-\RequirePackage{graphicx}
-\RequirePackage{multirow}
-\RequirePackage{enumitem}
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 \RequirePackage{afterpage}
@@ -72,7 +71,6 @@
 \RequirePackage{appendix}
 \RequirePackage[newfloat]{minted}
 \RequirePackage[font=small]{caption}
-\RequirePackage{float} % 'H' float positioning
 
 \newgeometry{top=2.5cm,bottom=2.5cm,inner=3cm,outer=2.5cm}
 
@@ -627,15 +625,15 @@
         \path[fill=gray!20] (0,0) rectangle ($ (current page.south west) + (2.5,2.5) $);
       \end{scope}
     \end{tikzpicture}%
-    \textbf{Wydział Informatyki i Zarządzania}\\
-    Kierunek studiów: \@fieldofstudy\\
-    Specjalność: \@specialty
+    \textbf{Wydzia\l{} Informatyki i Zarz\k{a}dzania}\\
+    Kierunek studi\'ow: \@fieldofstudy\\
+    Specjalno\'s\'c: \@specialty
     \hrule height 0pt
     \vspace{\fill}
     \hrule height 0pt
     \centering
     \large Praca dyplomowa
-    \ifengineering{--- inżynierska}\else
+    \ifengineering{--- in\.zynierska}\else
       \ifbachelors{--- licencjacka}\else
         \ifmasters{--- magisterska}\else
           \ClassWarning{wizthesis}{No thesis type specified in the options of the \string\documentclass, use either engineering, bachelors or masters}
@@ -658,9 +656,9 @@
     \hrule height 0pt
     \vspace{\fill}
     \begin{flushright}
-      \small słowa kluczowe:\\[1ex]
+      \small s\l{}owa kluczowe:\\[1ex]
       \begin{minipage}{7cm}
-        % Use \string to \StrLen text containing the 'ą' character with the newtxtext package
+        % Use \string to \StrLen text containing some non-UTF8 characters with the newtxtext package
         \StrLen{\string\@keywords}[\@keywordslength]
         \ifthenelse{\@keywordslength > \@keywordslengthlimit}{
           \footnotesize\@keywords
@@ -670,7 +668,7 @@
       \end{minipage}
     \end{flushright}
     \begin{flushleft}
-      \small krótkie streszczenie:\\[1ex]
+      \small kr\'otkie streszczenie:\\[1ex]
       \StrLen{\string\@summary}[\@summarylength]
       \ifthenelse{\@summarylength > \@summarylengthlimitb}{
         \parbox{\textwidth}{\scriptsize\@summary}
@@ -707,14 +705,14 @@
       \small\dotline[2.7pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       \\
       \cline{2-4}
-      & \scriptsize Tytuł/stopień naukowy/imię i nazwisko & \footnotesize ocena & \footnotesize podpis \\
+      & \scriptsize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko & \footnotesize ocena & \footnotesize podpis \\
       \hline
     \end{tabular}\par
     \vspace{0.5cm}
-    {\small Ostateczna ocena za pracę dyplomową}
+    {\small Ostateczna ocena za prac\c{e} dyplomow\k{a}}
     \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
       \hline
-      \multirow{2}{*}{\parbox{2.35cm}{\scriptsize Przewodniczący\\Komisji egzaminu\\dyplomowego}}
+      \multirow{2}{*}{\parbox{2.35cm}{\scriptsize Przewodnicz\k{a}cy\\Komisji egzaminu\\dyplomowego}}
       &
       \small\dotline[2.7pt]{150pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       &
@@ -723,28 +721,28 @@
       \small\dotline[2.7pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       \\
       \cline{2-4}
-      & \scriptsize Tytuł/stopień naukowy/imię i nazwisko & \footnotesize Ocena & \footnotesize podpis \\
+      & \scriptsize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko & \footnotesize Ocena & \footnotesize podpis \\
       \hline
     \end{tabular}
     \hrule height 0pt
     \emph{%
       \footnotesize
       \begin{flushleft}
-        Do celów archiwalnych pracę dyplomową zakwalifikowano do:*
+        Do cel\'ow archiwalnych prac\c{e} dyplomow\k{a} zakwalifikowano do:*
         \vspace{-1ex}
         \begin{enumerate}
           \itemsep0em
           \item[a)] kategorii A (akta wieczyste)
-          \item[b)] kategorii BE 50 (po 50 latach podlegające ekspertyzie)
+          \item[b)] kategorii BE 50 (po 50 latach podlegaj\k{a}ce ekspertyzie)
         \end{enumerate}
         \vspace{-1ex}
-        * niepotrzebne skreślić
+        * niepotrzebne skre\'sli\'c
       \end{flushleft}
     }%
     \begin{flushright}
-      \boxed{~~~\textrm{pieczątka wydziałowa}~~~}
+      \boxed{~~~\textrm{piecz\k{a}tka wydzia\l{}owa}~~~}
     \end{flushright}
-    \centering\large Wrocław, rok \the\year
+    \centering\large Wroc\l{}aw, rok \the\year
     \clearpage
   }
 }
@@ -1645,7 +1643,7 @@
     \begin{flushright}
       \small keywords:\\[1ex]
       \begin{minipage}{7cm}
-        % Use \string to \StrLen text containing the 'ą' character with the newtxtext package
+        % Use \string to \StrLen text containing some non-UTF8 characters with the newtxtext package
         \StrLen{\string\@keywords}[\@keywordslength]
         \ifthenelse{\@keywordslength > \@keywordslengthlimit}{
           \footnotesize\@keywords
@@ -1696,7 +1694,7 @@
       \hline
     \end{tabular}\par
     \vspace{0.5cm}
-    {\small Ostateczna ocena za pracę dyplomową}
+    {\small The final evaluation of the thesis}
     \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
       \hline
       \multirow{2}{*}{\parbox{2.35cm}{\scriptsize Head of the\\examination\\commission}}
@@ -1729,7 +1727,7 @@
     \begin{flushright}
       \boxed{~~~\textrm{stamp of the faculty}~~~}
     \end{flushright}
-    \centering\large Wrocław \the\year
+    \centering\large Wroc\l{}aw \the\year
     \clearpage
   }
 }
@@ -1738,9 +1736,9 @@
   \AtBeginDocument{
     \RequirePackage{polski}
     \RequirePackage{indentfirst}
-    \renewcommand\appendixtocname{Załącznik}
-    \renewcommand\appendixpagename{Załącznik}
-    \SetupFloatingEnvironment{listing}{listname=Spis listingów}
+    \renewcommand\appendixtocname{Za\l{}\k{a}czniki}
+    \renewcommand\appendixpagename{Za\l{}\k{a}czniki}
+    \SetupFloatingEnvironment{listing}{listname=Spis listing\'ow}
   }
   \renewcommand{\maketitle}{
     \pagenumbering{gobble}
@@ -1770,6 +1768,11 @@
 \setlength\belowdisplayskip{10pt}
 
 \captionsetup[listing]{skip=0pt}
+
+% Redefinition of the \mainmatter command to remove the \cleardoublepage
+\renewcommand\mainmatter{%
+  \@mainmattertrue
+  \pagenumbering{arabic}}
 
 % Redefinition of the appendices environment to include the \@mainmattertrue
 % for re-enabling chapter numbering for the appendices
