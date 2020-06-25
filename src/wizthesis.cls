@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{wizthesis}[2020/06/24 WIZ PWr thesis class]
+\ProvidesClass{wizthesis}[2020/06/25 WIZ PWr thesis class]
 
 \newif\ifpolish
 \newif\ifenglish
@@ -14,7 +14,7 @@
 \DeclareOption{engineering}{\engineeringtrue}
 
 \DeclareOption{titlepage}
-  {\ClassWarning{book}{Title page always generated. Option ignored}}
+  {\ClassWarning{wizthesis}{Option 'titlepage' superfluous. Ignored}}
 \DeclareOption{notitlepage}
   {\ClassWarning{wizthesis}{Option 'notitlepage' not available for wizthesis}}
 \DeclareOption{a4paper}
@@ -47,6 +47,8 @@
   {\ClassWarning{wizthesis}{Option 'twoside' superfluous. Ignored}}
 \DeclareOption{leqno}
   {\ClassWarning{wizthesis}{Option 'leqno' not available for wizthesis}}
+\DeclareOption{reqno}
+  {\ClassWarning{wizthesis}{Option 'reqno' superfluous. Ignored}}
 \DeclareOption{fleqn}
   {\ClassWarning{wizthesis}{Option 'fleqn' not available for wizthesis}}
 
@@ -63,6 +65,7 @@
 \RequirePackage{array} % \newcolumntype
 \RequirePackage{multirow}
 \RequirePackage{stackengine} % \addstackgap
+\RequirePackage[reqno]{amsmath} % Load before newtxmath, disable the leqno option
 \RequirePackage{newtxtext,newtxmath} % Times New Roman font
 \RequirePackage[nottoc]{tocbibind} % Bibliography in the TOC
 \RequirePackage{emptypage} % Remove page numbering for clear pages
@@ -71,6 +74,8 @@
 \RequirePackage{appendix}
 \RequirePackage[newfloat]{minted}
 \RequirePackage[font=small]{caption}
+
+\@fleqnfalse % Disable the fleqn option
 
 \newgeometry{top=2.5cm,bottom=2.5cm,inner=3cm,outer=2.5cm}
 
@@ -1743,13 +1748,21 @@
   \renewcommand{\maketitle}{
     \pagenumbering{gobble}
     \@titlepagepl
-    \cleardoublepage
+    \if@openright
+      \cleardoublepage
+    \else
+      \clearpage
+    \fi
   }
 \else
   \renewcommand{\maketitle}{
     \pagenumbering{gobble}
     \@titlepageen
-    \cleardoublepage
+    \if@openright
+      \cleardoublepage
+    \else
+      \clearpage
+    \fi
   }
 \fi
 
@@ -1770,11 +1783,13 @@
 \captionsetup[listing]{skip=0pt}
 
 % Redefinition of the \mainmatter command to remove the \cleardoublepage
+% for the openany option
 \renewcommand\mainmatter{%
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
   \@mainmattertrue
-  \pagenumbering{arabic}}
-
-% Redefinition of the appendices environment to include the \@mainmattertrue
-% for re-enabling chapter numbering for the appendices
-\let\oldappendices\appendices
-\def\appendices{\@mainmattertrue\oldappendices}
+  \pagenumbering{arabic}%
+}
