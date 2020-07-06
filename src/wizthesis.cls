@@ -726,7 +726,7 @@
       \small\dotline[2.7pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       \\
       \cline{2-4}
-      & \scriptsize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko & \footnotesize Ocena & \footnotesize podpis \\
+      & \scriptsize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko & \footnotesize ocena & \footnotesize podpis \\
       \hline
     \end{tabular}
     \hrule height 0pt
