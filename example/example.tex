@@ -49,7 +49,8 @@ magna ut congue. Mauris eu tincidunt augue. Nulla ex neque, lobortis et bibendum
 non, consequat eu odio. Donec euismod nisi porta, placerat elit vel, rutrum
 mauris. Curabitur id scelerisque urna, vel varius augue.
 
-{\let\clearpage\relax\chapter*{Abstract}} % Keep the english abstract on the same page
+{\let\clearpage\relax
+\chapter*{Abstract} % Keep the english abstract on the same page
 
 Maecenas nec interdum elit, eget vestibulum odio. Integer vel diam eu lacus
 ultricies mollis non at nibh. Aliquam vehicula felis velit, ac aliquet justo
@@ -67,12 +68,14 @@ sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
 Vestibulum vestibulum massa vel orci varius aliquam. Nunc tortor mauris,
 pulvinar ac mauris suscipit, ornare blandit neque. Phasellus in erat tincidunt,
 rutrum nunc at, vehicula quam. Duis rutrum sollicitudin felis auctor congue.
+}
 
 \tableofcontents
 
 \mainmatter % Re-enable page and chapter numbering
 
-{\backmatter\chapter{Wstęp}} % Disable this chapter number
+{\backmatter
+\chapter{Wstęp} % Disable this chapter number
 
 Donec ac purus non leo blandit condimentum. Morbi a urna eget velit consequat
 aliquam. Cras interdum lacus et finibus viverra. Sed porta tortor et nisi
@@ -103,6 +106,7 @@ neque purus, hendrerit et ex vitae, tempor pretium dolor. Vestibulum sed
 volutpat velit. Maecenas non augue magna. Pellentesque augue purus, lacinia sed
 turpis a, sodales elementum turpis. Proin feugiat quis diam in ultricies. Sed
 nibh metus, lobortis nec leo in, aliquet sodales sem.
+}
 
 \chapter{Rozdział pierwszy}
 
@@ -254,7 +258,8 @@ vulputate eu. Fusce tristique ipsum vitae metus semper pulvinar. Nam libero
 enim, suscipit in purus ut, porta faucibus turpis. Fusce dapibus commodo semper.
 Mauris dignissim lorem id mauris congue, a pellentesque ipsum volutpat.
 
-{\backmatter\chapter{Zakończenie}} % Disable this chapter number
+{\backmatter
+\chapter{Zakończenie} % Disable this chapter number
 
 Ut sagittis est in leo porttitor finibus. Donec euismod viverra turpis, sit amet
 ultricies mi placerat ac. Sed non mollis nunc. Nulla interdum odio ut odio
@@ -286,6 +291,7 @@ varius quis a eros. Duis sodales nulla vehicula, molestie turpis eget, bibendum
 neque. Proin non nulla velit. Proin id ante massa. Suspendisse faucibus sed enim
 et ornare. Curabitur suscipit est odio. Nulla iaculis tempor placerat. Morbi
 quis diam sed quam elementum porttitor.
+}
 
 \bibliographystyle{acm}
 \bibliography{bibliography.bib}
