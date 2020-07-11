@@ -2,13 +2,14 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem} % itemize, enumerate, and description environments
+\usepackage{booktabs} % Tables
 \usepackage{siunitx} % Percentages and other SI units
 \usepackage{float} % H float positioning
 
 % Set up the thesis
 \author{Maximus Decimus}
 \title{Lorem ipsum dolor sit amet}
-\supervisor{prof. dr hab. Caius Bonus}
+\supervisor{prof.\ dr hab.\ Caius Bonus}
 \fieldofstudy{Informatyka}
 \keywords{Lorem ipsum, dolor sit amet, Consectetur, Praesent, vel quam, Sit amet
 laoreet, In tristique, Sagittis nibh}
@@ -24,6 +25,8 @@ Nunc sapien.
 
 % Set up the style of code listings (optional)
 \setminted{frame=single,breaklines,linenos}
+% Set up the bibliography style
+\bibliographystyle{acm}
 
 \begin{document}
 
@@ -127,22 +130,22 @@ leo. Fusce quam nunc, convallis vitae velit id, sodales vestibulum arcu.
 Suspendisse potenti. Vivamus pellentesque ante vitae orci blandit ultricies.
 Nulla facilisi. Nunc fringilla tempus justo, non fermentum dui pellentesque
 eget. Sed posuere finibus aliquam. Interdum et malesuada fames ac ante ipsum
-primis in faucibus tabelus \ref{tab:jezyki}. Nulla quis elementum ipsum, at
+primis in faucibus tabelus~\ref{tab:jezyki}. Nulla quis elementum ipsum, at
 eleifend sem.
 \begin{table}[ht]
   \centering
   \caption{Vestibulum aliquam sem ultricies risus efficitur
   (\textit{źródło: \cite{latexcompanion}})}
   \label{tab:jezyki}
-  \begin{tabular}{|c|l|r|}
-    \hline
-    Ordo & \multicolumn{1}{c|}{Lingua} & \multicolumn{1}{c|}{Portio} \\ \hline
-    1    & JavaScript                  & \SI{18.703}{\percent}       \\ \hline
-    2    & Python                      & \SI{16.238}{\percent}       \\ \hline
-    3    & Java                        & \SI{10.938}{\percent}       \\ \hline
-    4    & Go                          & \SI{9.005}{\percent}        \\ \hline
-    5    & C++                         & \SI{7.423}{\percent}        \\ \hline
-    6    & Ruby                        & \SI{6.812}{\percent}        \\ \hline
+  \begin{tabular}{@{}clr@{}}
+    \toprule
+    Ordo & Lingua     & Portio                \\ \midrule
+    1    & JavaScript & \SI{18.703}{\percent} \\
+    2    & Python     & \SI{16.238}{\percent} \\
+    3    & Java       & \SI{10.938}{\percent} \\
+    4    & Go         & \SI{9.005}{\percent}  \\
+    5    & C++        & \SI{7.423}{\percent}  \\
+    6    & Ruby       & \SI{6.812}{\percent}  \\ \bottomrule
   \end{tabular}
 \end{table}
 Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
@@ -151,7 +154,7 @@ sodales, a tincidunt nulla lacinia. Donec nisl lectus, commodo porttitor nunc
 in, efficitur rutrum neque. Curabitur pulvinar, nisl non mollis finibus, quam
 velit rutrum augue, ac vulputate ipsum dui eget justo. Donec placerat leo metus,
 id dictum elit porta nec. Aenean ac metus ac lacus laoreet pellentesque eget in
-dolor \cite[chap. 2]{latexcompanion} nec:
+dolor~\cite[chap. 2]{latexcompanion} nec:
 \begin{itemize}[noitemsep]
   \item Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   \item Proin sodales justo eu ex tincidunt commodo.
@@ -175,7 +178,7 @@ massa sem scelerisque augue, vel vestibulum orci felis sed magna. Fusce a
 placerat nunc. Vestibulum quis augue at quam pharetra pulvinar vel non nulla.
 Aliquam erat volutpat. Nunc vulputate interdum quam, sit amet vehicula sem
 mattis sit amet. Proin mattis pretium neque. Donec sit amet purus vel erat
-aliquet \cite{einstein} ornare.
+aliquet~\cite{einstein} ornare.
 \begin{equation} \label{eq:skomplikowane}
   L' = {L}{\sqrt{1-\frac{v^2}{c^2}}}
 \end{equation}
@@ -183,15 +186,16 @@ Proin aliquam commodo felis, ut condimentum ipsum.
 \begin{equation} \label{eq:proste}
   a = bq + r
 \end{equation}
-aliquam \eqref{eq:proste} eu convallis $a$ vel $b$ porttitor a metus $b \neq c$.
+aliquam~\eqref{eq:proste} eu convallis \(a\) vel \(b\) porttitor a metus \(b
+\neq c\).
 
 Vestibulum placerat ligula sed ante interdum ultricies. Quisque sollicitudin
 dolor eget finibus varius. Integer sollicitudin, ante ut suscipit sagittis, leo
 erat vehicula neque, eleifend finibus justo purus vel magna. Integer sit amet
-odio ut dolor dictum finibus vitae eu sem. Morbi sed aequationum
-\eqref{eq:skomplikowane} dolor pharetra, pellentesque erat vitae, lobortis
-mauris. Duis accumsan mattis mi. Nunc euismod id mauris a vulputate. In mollis
-purus quis varius pulvinar. In egestas molestie dui, eu lobortis neque
+odio ut dolor dictum finibus vitae eu sem. Morbi sed
+aequationum~\eqref{eq:skomplikowane} dolor pharetra, pellentesque erat vitae,
+lobortis mauris. Duis accumsan mattis mi. Nunc euismod id mauris a vulputate. In
+mollis purus quis varius pulvinar. In egestas molestie dui, eu lobortis neque
 scelerisque eget. Donec consequat a ante nec mollis.
 
 \section{Podrozdział drugi}
@@ -200,7 +204,7 @@ In hac habitasse platea dictumst. Vestibulum maximus aliquam ante dignissim
 elementum. Praesent viverra enim faucibus tellus iaculis, nec tristique ipsum
 varius. Vivamus egestas a risus et venenatis. Vivamus sit amet quam nec leo
 sodales aliquet. Quisque ligula justo, vestibulum quis molestie eget, placerat
-vel ipsum. Vestibulum libero lacus, aliquet id porttitor figuris \ref{fig:iz}
+vel ipsum. Vestibulum libero lacus, aliquet id porttitor figuris~\ref{fig:iz}
 in, tempor non magna. Fusce pretium ultricies leo, id tincidunt erat pharetra
 at. Quisque quis eros molestie, euismod metus at, dapibus est.
 \begin{figure}[ht]
@@ -222,7 +226,7 @@ facilisis mauris. Nunc quis convallis turpis. Mauris lorem lacus, luctus vel
 scelerisque id, semper et felis. Morbi auctor, ante non finibus scelerisque,
 velit leo dignissim purus, in vehicula erat lacus eu lacus. Pellentesque
 elementum sollicitudin nisi, ac semper nunc sagittis et. Nunc sem lorem,
-condimentum at sodales eu, iaculis listingus \ref{lst:program} ac justo.
+condimentum at sodales eu, iaculis listingus~\ref{lst:program} ac justo.
 \begin{listing}[H]
   \begin{minted}{c}
 #include <stdio.h>
@@ -243,7 +247,7 @@ aliquet libero. Nam aliquam sagittis erat, quis tempus turpis ullamcorper sit
 amet. In vitae sapien id tortor ornare scelerisque in in massa. Nam quis velit
 non lorem auctor commodo vel in tortor. Donec sed nunc et libero mollis
 fringilla. Vivamus quis pellentesque purus, ut malesuada tellus. Suspendisse sit
-figuris \ref{fig:wykres} ullamcorper, volutpat purus eget, ullamcorper arcu.
+figuris~\ref{fig:wykres} ullamcorper, volutpat purus eget, ullamcorper arcu.
 \begin{figure}[ht]
   \centering
   \input{img/plot.pgf}
@@ -294,7 +298,6 @@ et ornare. Curabitur suscipit est odio. Nulla iaculis tempor placerat. Morbi
 quis diam sed quam elementum porttitor.
 }
 
-\bibliographystyle{acm}
 \bibliography{bibliography.bib}
 
 \listoffigures
