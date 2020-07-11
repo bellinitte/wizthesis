@@ -72,7 +72,7 @@
 \RequirePackage{titlesec} % Chapter and section headings
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{appendix}
-\RequirePackage[newfloat]{minted}
+\RequirePackage[newfloat,cache=false]{minted}
 \RequirePackage[font=small]{caption}
 
 \@fleqnfalse % Disable the fleqn option
