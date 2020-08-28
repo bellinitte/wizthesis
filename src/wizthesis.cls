@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{wizthesis}[2020/06/25 WIZ PWr thesis class]
+\ProvidesClass{wizthesis}[2020/08/28 WIZ PWr thesis class]
 
 \newif\ifpolish
 \newif\ifenglish
@@ -74,6 +74,7 @@
 \RequirePackage{appendix}
 \RequirePackage[newfloat,cache=false]{minted}
 \RequirePackage[font=small]{caption}
+\RequirePackage{indentfirst}
 
 \@fleqnfalse % Disable the fleqn option
 
@@ -1740,7 +1741,6 @@
 \ifpolish
   \AtBeginDocument{
     \RequirePackage{polski}
-    \RequirePackage{indentfirst}
     \renewcommand\appendixtocname{Za\l{}\k{a}czniki}
     \renewcommand\appendixpagename{Za\l{}\k{a}czniki}
     \SetupFloatingEnvironment{listing}{listname=Spis listing\'ow}
