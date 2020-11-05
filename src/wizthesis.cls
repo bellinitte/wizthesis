@@ -70,7 +70,6 @@
 \RequirePackage[nottoc]{tocbibind} % Bibliography in the TOC
 \RequirePackage{emptypage} % Remove page numbering for clear pages
 \RequirePackage{titlesec} % Chapter and section headings
-\RequirePackage[hidelinks]{hyperref}
 \RequirePackage{appendix}
 \RequirePackage[newfloat,cache=false]{minted}
 \RequirePackage[font=small]{caption}
