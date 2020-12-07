@@ -39,7 +39,6 @@ Other options from the book class are either superfluous or not available for wi
 To set up the information about the thesis, use the following commands in the preamble:
 - `\author` &ndash; name of the author,
 - `\title` &ndash; title of the thesis,
-- `\supervisor` &ndash; name of the thesis' supervisor,
 - `\fieldofstudy` &ndash; author's field of study,
 - `\specialty` (*optional*) &ndash; author's specialty, if any. Defaults to "`---`",
 - `\keywords` &ndash; thesis' keywords. Should not be longer than 150 characters,
