@@ -72,7 +72,7 @@
 \RequirePackage{titlesec} % Chapter and section headings
 \RequirePackage{appendix}
 \RequirePackage[newfloat,cache=false]{minted}
-\RequirePackage[font=small]{caption}
+\RequirePackage[font=small,labelsep=period]{caption}
 \RequirePackage{indentfirst}
 
 \@fleqnfalse % Disable the fleqn option
