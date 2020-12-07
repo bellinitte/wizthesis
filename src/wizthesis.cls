@@ -112,6 +112,9 @@
 \newcommand{\@supervisorlengthlimitc}{36}
 
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+\newcommand\xrowht[2][0]{\addstackgap[.5\dimexpr#2\relax]{\vphantom{#1}}}
 
 \def\dotfill#1{\cleaders\hbox to #1{.}\hfill}
 \newcommand{\dotline}[2][.5em]{\leavevmode\hbox to #2{\dotfill{#1}\hfil}}
@@ -686,38 +689,21 @@
       }
     \end{flushleft}
     \hrule height 0pt
-    \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
+    \begin{tabular}{|m{2.35cm}|C{10cm}|}
       \hline
-      \multirow{2}{*}{\parbox{2.35cm}{\footnotesize Opiekun pracy\\dyplomowej}}
+      \multirow{2}{*}{\parbox{2.35cm}{\centering\footnotesize Opiekun pracy\\dyplomowej}}
       &
-      \StrLen{\string\@supervisor}[\@supervisorlength]%
-      \ifthenelse{\@supervisorlength > \@supervisorlengthlimitc}{%
-        \scriptsize\addstackgap[6pt]{\@supervisor}%
-      }{%
-        \ifthenelse{\@supervisorlength > \@supervisorlengthlimitb}{%
-          \footnotesize\addstackgap[6pt]{\@supervisor}%
-        }{%
-          \ifthenelse{\@supervisorlength > \@supervisorlengthlimita}{%
-            \small\addstackgap[6pt]{\@supervisor}%
-          }{%
-            \normalsize\@supervisor%
-          }%
-        }%
-      }%
-      &
-      \small\dotline[2.7pt]{32pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
-      &
-      \small\dotline[2.7pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \small\dotline[2.7pt]{260pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       \\
-      \cline{2-4}
-      & \scriptsize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko & \footnotesize ocena & \footnotesize podpis \\
+      \cline{2-2}
+      & \footnotesize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko \\
       \hline
     \end{tabular}\par
-    \vspace{0.5cm}
+    \vspace{0.4cm}
     {\small Ostateczna ocena za prac\c{e} dyplomow\k{a}}
     \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
       \hline
-      \multirow{2}{*}{\parbox{2.35cm}{\scriptsize Przewodnicz\k{a}cy\\Komisji egzaminu\\dyplomowego}}
+      \multirow{2}{*}{\parbox{2.35cm}{\centering\scriptsize Przewodnicz\k{a}cy\\Komisji egzaminu\\dyplomowego}}
       &
       \small\dotline[2.7pt]{150pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       &
@@ -726,7 +712,7 @@
       \small\dotline[2.7pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       \\
       \cline{2-4}
-      & \scriptsize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko & \footnotesize ocena & \footnotesize podpis \\
+      & \footnotesize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko & \footnotesize ocena & \footnotesize podpis \\
       \hline
     \end{tabular}
     \hrule height 0pt
@@ -1671,38 +1657,21 @@
       }
     \end{flushleft}
     \hrule height 0pt
-    \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
+    \begin{tabular}{|m{2.35cm}|C{10cm}|}
       \hline
-      \multirow{2}{*}{\parbox{2.35cm}{\footnotesize Supervisor}}
+      \multirow{2}{*}{\parbox{2.35cm}{\centering\footnotesize Supervisor}}
       &
-      \StrLen{\string\@supervisor}[\@supervisorlength]%
-      \ifthenelse{\@supervisorlength > \@supervisorlengthlimitc}{%
-        \scriptsize\addstackgap[6pt]{\@supervisor}%
-      }{%
-        \ifthenelse{\@supervisorlength > \@supervisorlengthlimitb}{%
-          \footnotesize\addstackgap[6pt]{\@supervisor}%
-        }{%
-          \ifthenelse{\@supervisorlength > \@supervisorlengthlimita}{%
-            \small\addstackgap[6pt]{\@supervisor}%
-          }{%
-            \normalsize\@supervisor%
-          }%
-        }%
-      }%
-      &
-      \small\dotline[2.7pt]{32pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
-      &
-      \small\dotline[2.7pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \small\dotline[2.7pt]{260pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       \\
-      \cline{2-4}
-      & \scriptsize Title/degree/name and surname & \footnotesize grade & \footnotesize signature \\
+      \cline{2-2}
+      & \footnotesize Title/degree/name and surname \\
       \hline
     \end{tabular}\par
-    \vspace{0.5cm}
-    {\small The final evaluation of the thesis}
+    \vspace{0.4cm}
+    {\small The final evaluation of the thesis\vspace{2pt}}
     \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
       \hline
-      \multirow{2}{*}{\parbox{2.35cm}{\scriptsize Head of the\\examination\\commission}}
+      \multirow{2}{*}{\parbox{2.35cm}{\centering\scriptsize Chairman of the \\ Diploma \\ Examination \\ Committee}}
       &
       \small\dotline[2.7pt]{150pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       &
@@ -1711,7 +1680,7 @@
       \small\dotline[2.7pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
       \\
       \cline{2-4}
-      & \scriptsize Title/degree/name and surname & \footnotesize grade & \footnotesize signature \\
+      & \footnotesize Title/degree/name and surname & \footnotesize grade & \footnotesize signature \\
       \hline
     \end{tabular}
     \hrule height 0pt
