@@ -85,9 +85,6 @@
 \renewcommand{\@title}
   {Untitled\ClassWarning{wizthesis}{No title provided, use \string\title}}
 \renewcommand{\title}[1]{\renewcommand{\@title}{#1}}
-\newcommand{\@supervisor}
-  {Anonymous\ClassWarning{wizthesis}{No supervisor provided, use \string\supervisor}}
-\newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
 \newcommand{\@fieldofstudy}
   {No field of study\ClassWarning{wizthesis}{No field of study provided, use \string\fieldofstudy}}
 \newcommand{\fieldofstudy}[1]{\renewcommand{\@fieldofstudy}{#1}}
@@ -107,9 +104,6 @@
 \newcommand{\@keywordslengthlimit}{150}
 \newcommand{\@summarylengthlimita}{400}
 \newcommand{\@summarylengthlimitb}{500}
-\newcommand{\@supervisorlengthlimita}{28}
-\newcommand{\@supervisorlengthlimitb}{32}
-\newcommand{\@supervisorlengthlimitc}{36}
 
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
 \newcolumntype{N}{@{}m{0pt}@{}}
