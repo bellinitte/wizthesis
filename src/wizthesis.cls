@@ -87,7 +87,8 @@
 \renewcommand{\@title}
   {Untitled\ClassWarning{wizthesis}{No title provided, use \string\title}}
 \renewcommand{\title}[1]{\renewcommand{\@title}{#1}}
-\newcommand{\@supervisor}{}
+\newcommand{\@supervisor}
+  {Anonymous\ClassWarning{wizthesis}{No supervisor provided, use \string\supervisor}}
 \newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
 \newcommand{\@fieldofstudy}
   {No field of study\ClassWarning{wizthesis}{No field of study provided, use \string\fieldofstudy}}
@@ -1670,8 +1671,8 @@
       \hline
       \multirow{2}{*}{\parbox{2.35cm}{\centering\footnotesize Supervisor}}
       &
-      \small\dotline[2.7pt]{260pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
-      \\
+      \normalsize\@supervisor\rule[.06\baselineskip]{0pt}{\baselineskip}
+      \\[5pt]
       \cline{2-2}
       & \footnotesize Title/degree/name and surname \\
       \hline
