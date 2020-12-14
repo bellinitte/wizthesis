@@ -1620,7 +1620,7 @@
     \centering
     \large
     \ifengineering{Engineering Thesis}\else
-      \ifbachelors{Bachelor's Thesis}\else
+      \ifbachelors{Bachelor Thesis}\else
         \ifmasters{Master's Thesis}\else
           \ClassWarning{wizthesis}{No thesis type specified in the options of the \string\documentclass, use either engineering, bachelors or masters}
         \fi
