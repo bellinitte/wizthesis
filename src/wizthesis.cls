@@ -1583,20 +1583,18 @@
       \hline
     \end{tabular}
     \hrule height 0pt
-    \emph{%
-      \footnotesize
-      \begin{flushleft}
-        Do cel\'ow archiwalnych prac\c{e} dyplomow\k{a} zakwalifikowano do:*
-        \vspace{-1ex}
-        \begin{enumerate}
-          \itemsep0em
-          \item[a)] kategorii A (akta wieczyste)
-          \item[b)] kategorii BE 50 (po 50 latach podlegaj\k{a}ce ekspertyzie)
-        \end{enumerate}
-        \vspace{-1ex}
-        * niepotrzebne skre\'sli\'c
-      \end{flushleft}
-    }%
+    \footnotesize
+    \begin{flushleft}
+      Do cel\'ow archiwalnych prac\c{e} dyplomow\k{a} zakwalifikowano do:*
+      \vspace{-1ex}
+      \begin{enumerate}
+        \itemsep0em
+        \item[a)] kategorii A (akta wieczyste)
+        \item[b)] kategorii BE 50 (po 50 latach podlegaj\k{a}ce ekspertyzie)
+      \end{enumerate}
+      \vspace{-1ex}
+      * niepotrzebne skre\'sli\'c
+    \end{flushleft}
     \begin{flushright}
       \boxed{~~~\textrm{piecz\k{a}tka wydzia\l{}owa}~~~}
     \end{flushright}
@@ -1694,20 +1692,18 @@
       \hline
     \end{tabular}
     \hrule height 0pt
-    \emph{%
-      \footnotesize
-      \begin{flushleft}
-        For the purposes of archival thesis qualified to:*
-        \vspace{-1ex}
-        \begin{enumerate}
-          \itemsep0em
-          \item[a)] category A (perpetual files)
-          \item[b)] category BE 50 (subject to expertise after 50 years)
-        \end{enumerate}
-        \vspace{-1ex}
-        * delete as appropriate
-      \end{flushleft}
-    }%
+    \footnotesize
+    \begin{flushleft}
+      For the purposes of archival thesis qualified to:*
+      \vspace{-1ex}
+      \begin{enumerate}
+        \itemsep0em
+        \item[a)] category A (perpetual files)
+        \item[b)] category BE 50 (subject to expertise after 50 years)
+      \end{enumerate}
+      \vspace{-1ex}
+      * Delete as appropriate
+    \end{flushleft}
     \begin{flushright}
       \boxed{~~~\textrm{stamp of the faculty}~~~}
     \end{flushright}
