@@ -63,9 +63,9 @@
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 \RequirePackage{afterpage}
-\RequirePackage{xstring,xifthen} % \StrLen, \ifthenelse
+\RequirePackage{xstring,ifthen,xifthen} % \StrLen, \ifthenelse, \empty
 \RequirePackage{array} % \newcolumntype
-\RequirePackage{multirow}
+\RequirePackage{multirow,bigstrut}
 \RequirePackage{stackengine} % \addstackgap
 \RequirePackage[reqno]{amsmath} % Load before newtxmath, disable the leqno option
 \RequirePackage{newtxtext,newtxmath} % Times New Roman font
@@ -81,29 +81,28 @@
 
 \newgeometry{top=2.5cm,bottom=2.5cm,inner=3cm,outer=2.5cm}
 
-\renewcommand{\@author}
-  {Anonymous\ClassWarning{wizthesis}{No author provided, use \string\author}}
-\renewcommand{\author}[1]{\renewcommand{\@author}{#1}}
-\renewcommand{\@title}
-  {Untitled\ClassWarning{wizthesis}{No title provided, use \string\title}}
-\renewcommand{\title}[1]{\renewcommand{\@title}{#1}}
-\newcommand{\@supervisor}
-  {Anonymous\ClassWarning{wizthesis}{No supervisor provided, use \string\supervisor}}
-\newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
-\newcommand{\@fieldofstudy}
-  {No field of study\ClassWarning{wizthesis}{No field of study provided, use \string\fieldofstudy}}
-\newcommand{\fieldofstudy}[1]{\renewcommand{\@fieldofstudy}{#1}}
-\newcommand{\@specialty}{}
-\newcommand{\specialty}[1]{\renewcommand{\@specialty}{#1}}
-\newcommand{\@summary}
-  {No summary\ClassWarning{wizthesis}{No summary provided, use \string\summary}}
-\newcommand{\summary}[1]{\renewcommand{\@summary}{#1}}
-\newcommand{\@keywords}
-  {No keywords\ClassWarning{wizthesis}{No keywords provided, use \string\keywords}}
-\newcommand{\keywords}[1]{\renewcommand{\@keywords}{#1}}
-\newcommand{\@abstract}
-  {No abstract\ClassWarning{wizthesis}{No abstract provided, use \string\abstract}}
-\newcommand{\abstract}[1]{\renewcommand{\@abstract}{#1}}
+\def\@author
+  {\ClassWarning{wizthesis}{No author provided, use \string\author}}
+\renewcommand{\author}[1]{\def\@author{#1}}
+\def\@title
+  {\ClassWarning{wizthesis}{No title provided, use \string\title}}
+\renewcommand{\title}[1]{\def\@title{#1}}
+\def\@supervisor{}
+\newcommand{\supervisor}[1]{\def\@supervisor{#1}}
+\def\@fieldofstudy
+  {\ClassWarning{wizthesis}{No field of study provided, use \string\fieldofstudy}}
+\newcommand{\fieldofstudy}[1]{\def\@fieldofstudy{#1}}
+\def\@specialty{}
+\newcommand{\specialty}[1]{\def\@specialty{#1}}
+\def\@summary
+  {\ClassWarning{wizthesis}{No summary provided, use \string\summary}}
+\newcommand{\summary}[1]{\def\@summary{#1}}
+\def\@keywords
+  {\ClassWarning{wizthesis}{No keywords provided, use \string\keywords}}
+\newcommand{\keywords}[1]{\def\@keywords{#1}}
+\def\@abstract
+  {\ClassWarning{wizthesis}{No abstract provided, use \string\abstract}}
+\newcommand{\abstract}[1]{\def\@abstract{#1}}
 
 \newcommand{\@titlelengthlimit}{60}
 \newcommand{\@keywordslengthlimit}{150}
@@ -120,6 +119,8 @@
 
 \def\dotfill#1{\cleaders\hbox to #1{.}\hfill}
 \newcommand{\dotline}[2][.5em]{\leavevmode\hbox to #2{\dotfill{#1}\hfil}}
+
+\setlength{\bigstrutjot}{4pt}
 
 \newcommand{\@logotypepl}{
   \begin{tikzpicture}[remember picture,overlay,inner sep=0pt,outer sep=0pt]
@@ -1558,9 +1559,13 @@
     \hrule height 0pt
     \begin{tabular}{|m{2.35cm}|C{10cm}|}
       \hline
-      \multirow{2}{*}{\parbox{2.35cm}{\centering\footnotesize Opiekun pracy\\dyplomowej}}
+      \multirow{2}[b 1]{*}{\parbox{2.35cm}{\centering\footnotesize Opiekun pracy\\dyplomowej}}
       &
-      \small\dotline[2.7pt]{260pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \ifx\@supervisor\empty{
+        \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{260pt}}\bigstrut
+      }\else{
+        \normalsize\@supervisor{}\bigstrut
+      }\fi
       \\
       \cline{2-2}
       & \footnotesize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko \\
@@ -1570,13 +1575,13 @@
     {\small Ostateczna ocena za prac\c{e} dyplomow\k{a}}
     \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
       \hline
-      \multirow{2}{*}{\parbox{2.35cm}{\centering\scriptsize Przewodnicz\k{a}cy\\Komisji egzaminu\\dyplomowego}}
+      \multirow{2}[b 1]{*}{\parbox{2.35cm}{\centering\scriptsize Przewodnicz\k{a}cy\\Komisji egzaminu\\dyplomowego}}
       &
-      \small\dotline[2.7pt]{150pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{150pt}}\bigstrut
       &
-      \small\dotline[2.7pt]{32pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{32pt}}\bigstrut
       &
-      \small\dotline[2.7pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{56pt}}\bigstrut
       \\
       \cline{2-4}
       & \footnotesize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko & \footnotesize ocena & \footnotesize podpis \\
@@ -1667,10 +1672,14 @@
     \hrule height 0pt
     \begin{tabular}{|m{2.35cm}|C{10cm}|}
       \hline
-      \multirow{2}{*}{\parbox{2.35cm}{\centering\footnotesize Supervisor}}
+      \multirow{2}[b 1]{*}{\parbox{2.35cm}{\centering\footnotesize Supervisor}}
       &
-      \normalsize\@supervisor\rule[.06\baselineskip]{0pt}{\baselineskip}
-      \\[5pt]
+      \ifx\@supervisor\empty{
+        \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{260pt}}\bigstrut
+      }\else{
+        \normalsize\@supervisor{}\bigstrut
+      }\fi
+      \\
       \cline{2-2}
       & \footnotesize Title/degree/name and surname \\
       \hline
@@ -1679,13 +1688,13 @@
     {\small The final evaluation of the thesis\vspace{2pt}}
     \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
       \hline
-      \multirow{2}{*}{\parbox{2.35cm}{\centering\scriptsize Chairman of the \\ Diploma \\ Examination \\ Committee}}
+      \multirow{2}[b 1]{*}{\parbox{2.35cm}{\centering\scriptsize Chairman of the \\ Diploma \\ Examination \\ Committee}}
       &
-      \small\dotline[2.7pt]{150pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{150pt}}\bigstrut
       &
-      \small\dotline[2.7pt]{32pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{32pt}}\bigstrut
       &
-      \small\dotline[2.7pt]{56pt}\rule[.5\baselineskip]{0pt}{\baselineskip}
+      \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{56pt}}\bigstrut
       \\
       \cline{2-4}
       & \footnotesize Title/degree/name and surname & \footnotesize grade & \footnotesize signature \\
