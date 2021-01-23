@@ -82,26 +82,25 @@
 \newgeometry{top=2.5cm,bottom=2.5cm,inner=3cm,outer=2.5cm}
 
 \def\@author
-  {\ClassWarning{wizthesis}{No author provided, use \string\author}}
+  {\ClassError{wizthesis}{No author provided}{The author string has not been set in the preable. Please use the author command to set it.}}
 \renewcommand{\author}[1]{\def\@author{#1}}
-\def\@title
-  {\ClassWarning{wizthesis}{No title provided, use \string\title}}
+\def\@title{}
 \renewcommand{\title}[1]{\def\@title{#1}}
 \def\@supervisor{}
 \newcommand{\supervisor}[1]{\def\@supervisor{#1}}
 \def\@fieldofstudy
-  {\ClassWarning{wizthesis}{No field of study provided, use \string\fieldofstudy}}
+  {\ClassError{wizthesis}{No field of study provided}{The field of study string has not been set in the preable. Please use the fieldofstudy command to set it.}}
 \newcommand{\fieldofstudy}[1]{\def\@fieldofstudy{#1}}
 \def\@specialty{}
 \newcommand{\specialty}[1]{\def\@specialty{#1}}
 \def\@summary
-  {\ClassWarning{wizthesis}{No summary provided, use \string\summary}}
+  {\ClassError{wizthesis}{No summary provided}{The summary string has not been set in the preable. Please use the summary command to set it.}}
 \newcommand{\summary}[1]{\def\@summary{#1}}
 \def\@keywords
-  {\ClassWarning{wizthesis}{No keywords provided, use \string\keywords}}
+  {\ClassError{wizthesis}{No keywords provided}{The keywords string has not been set in the preable. Please use the keywords command to set it.}}
 \newcommand{\keywords}[1]{\def\@keywords{#1}}
 \def\@abstract
-  {\ClassWarning{wizthesis}{No abstract provided, use \string\abstract}}
+  {\ClassError{wizthesis}{No abstract provided}{The abstract string has not been set in the preable. Please use the abstract command to set it.}}
 \newcommand{\abstract}[1]{\def\@abstract{#1}}
 
 \newcommand{\@titlelengthlimit}{60}
@@ -1503,7 +1502,7 @@
     \@logotypepl
     \textbf{Wydzia\l{} Informatyki i Zarz\k{a}dzania}\\
     Kierunek studi\'ow: \@fieldofstudy\\
-    \if\@specialty\empty\else{Specjalno\'s\'c: \@specialty}\fi
+    \ifx\@specialty\empty\else{Specjalno\'s\'c: \@specialty}\fi
     \hrule height 0pt
     \vspace{\fill}
     \hrule height 0pt
@@ -1519,6 +1518,7 @@
     \hrule height 0pt
     \vspace{\fill}%
     \hrule height 0pt
+    \ifx\@title\empty{\ClassError{wizthesis}{No title provided}{The title string has not been set in the preable. Please use the title command to set it.}}\fi
     \StrLen{\string\@title}[\@titlelength]
     \ifthenelse{\@titlelength > \@titlelengthlimit}{
       \large\textbf{\MakeUppercase{\@title}}\\
@@ -1616,7 +1616,7 @@
     \ifforcepolishlogotype\@logotypepl\else\@logotypeen\fi
     \textbf{Faculty of Computer Science and Management}\\
     Field of study: \@fieldofstudy\\
-    \if\@specialty\empty\else{Specialty: \@specialty}\fi
+    \ifx\@specialty\empty\else{Specialty: \@specialty}\fi
     \hrule height 0pt
     \vspace{\fill}
     \hrule height 0pt
@@ -1632,6 +1632,7 @@
     \hrule height 0pt
     \vspace{\fill}%
     \hrule height 0pt
+    \ifx\@title\empty{\ClassError{wizthesis}{No title provided}{The title string has not been set in the preable. Please use the title command to set it.}}\fi
     \StrLen{\string\@title}[\@titlelength]
     \ifthenelse{\@titlelength > \@titlelengthlimit}{
       \large\textbf{\MakeUppercase{\@title}}\\
