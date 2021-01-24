@@ -27,7 +27,8 @@ To use this class in your own TeX environment, whether it's a local installation
 
 The class provides several options to customize your document:
 - `english` / `polish` &ndash; specifies the thesis' language. This affects strings like chapter titles and caption headers. Defaults to `english`,
-- `engineering` / `bachelors` / `masters` &ndash; specifies the type of the thesis. This only affects the text on the title page. If no type is specified, wizthesis will give you an appropriate warning.
+- `engineering` / `bachelors` / `masters` &ndash; specifies the type of the thesis. This only affects the text on the title page. If no type is specified, wizthesis will give you an appropriate error,
+- `forcepolishlogotype` &ndash; overrides the language of the logotype to Polish, regardless of the language specified.
 
 As the class derives from the book class, it also provides some, but not all, options native to it:
 - `draft` / `final`,
@@ -39,6 +40,7 @@ Other options from the book class are either superfluous or not available for wi
 To set up the information about the thesis, use the following commands in the preamble:
 - `\author` &ndash; name of the author,
 - `\title` &ndash; title of the thesis,
+- `\supervisor` (*optional*) &ndash; name of the thesis' supervisor,
 - `\fieldofstudy` &ndash; author's field of study,
 - `\specialty` (*optional*) &ndash; author's specialty, if any. Defaults to "`---`",
 - `\keywords` &ndash; thesis' keywords. Should not be longer than 150 characters,
