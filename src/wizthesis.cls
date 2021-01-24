@@ -82,25 +82,19 @@
 \newgeometry{top=2.5cm,bottom=2.5cm,inner=3cm,outer=2.5cm}
 
 \def\@author{}
-\renewcommand{\author}[1]{\def\@author{#1}}
 \def\@title{}
-\renewcommand{\title}[1]{\def\@title{#1}}
 \def\@supervisor{}
-\newcommand{\supervisor}[1]{\def\@supervisor{#1}}
-\def\@fieldofstudy
-  {\ClassError{wizthesis}{No field of study provided}{The field of study string has not been set in the preable. Please use the fieldofstudy command to set it.}}
-\newcommand{\fieldofstudy}[1]{\def\@fieldofstudy{#1}}
+\def\@fieldofstudy{}
 \def\@specialty{}
+\def\@summary{}
+\def\@keywords{}
+\renewcommand{\author}[1]{\def\@author{#1}}
+\renewcommand{\title}[1]{\def\@title{#1}}
+\newcommand{\supervisor}[1]{\def\@supervisor{#1}}
+\newcommand{\fieldofstudy}[1]{\def\@fieldofstudy{#1}}
 \newcommand{\specialty}[1]{\def\@specialty{#1}}
-\def\@summary
-  {\ClassError{wizthesis}{No summary provided}{The summary string has not been set in the preable. Please use the summary command to set it.}}
 \newcommand{\summary}[1]{\def\@summary{#1}}
-\def\@keywords
-  {\ClassError{wizthesis}{No keywords provided}{The keywords string has not been set in the preable. Please use the keywords command to set it.}}
 \newcommand{\keywords}[1]{\def\@keywords{#1}}
-\def\@abstract
-  {\ClassError{wizthesis}{No abstract provided}{The abstract string has not been set in the preable. Please use the abstract command to set it.}}
-\newcommand{\abstract}[1]{\def\@abstract{#1}}
 
 \newcommand{\@titlelengthlimit}{60}
 \newcommand{\@keywordslengthlimit}{150}
@@ -1499,6 +1493,7 @@
     \newgeometry{left=4.85cm, right=2.85cm, top=4.55cm, bottom=2.85cm}
     \setlength{\parindent}{0pt}
     \ifforcepolishlogotype\@logotypepl\else\ifpolish\@logotypepl\else\@logotypeen\fi\fi
+    \ifx\@fieldofstudy\empty{\ClassError{wizthesis}{No field of study provided}{The field of study string has not been set in the preable. Please use the fieldofstudy command to set it.}}\fi
     \ifpolish{%
       \textbf{Wydzia\l{} Informatyki i Zarz\k{a}dzania}\\
       Kierunek studi\'ow: \@fieldofstudy\\
@@ -1554,6 +1549,7 @@
       }\fi\\[1ex]
       \begin{minipage}{7cm}
         % Use \string to \StrLen text containing some non-UTF8 characters with the newtxtext package
+        \ifx\@keywords\empty{\ClassError{wizthesis}{No keywords provided}{The keywords string has not been set in the preable. Please use the keywords command to set it.}}\fi
         \StrLen{\string\@keywords}[\@keywordslength]
         \ifthenelse{\@keywordslength > \@keywordslengthlimit}{
           \footnotesize\@keywords
@@ -1568,6 +1564,7 @@
       }\else{%
         short summary:
       }\fi\\[1ex]
+      \ifx\@summary\empty{\ClassError{wizthesis}{No summary provided}{The summary string has not been set in the preable. Please use the summary command to set it.}}\fi
       \StrLen{\string\@summary}[\@summarylength]
       \ifthenelse{\@summarylength > \@summarylengthlimitb}{
         \parbox{\textwidth}{\scriptsize\@summary}
