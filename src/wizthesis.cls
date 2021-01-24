@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{wizthesis}[2020/09/13 WIZ PWr thesis class]
+\ProvidesClass{wizthesis}[2021/01/24 WIZ PWr thesis class]
 
 \newif\ifpolish
 \newif\ifenglish
