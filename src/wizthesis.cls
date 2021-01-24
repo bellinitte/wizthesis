@@ -81,8 +81,7 @@
 
 \newgeometry{top=2.5cm,bottom=2.5cm,inner=3cm,outer=2.5cm}
 
-\def\@author
-  {\ClassError{wizthesis}{No author provided}{The author string has not been set in the preable. Please use the author command to set it.}}
+\def\@author{}
 \renewcommand{\author}[1]{\def\@author{#1}}
 \def\@title{}
 \renewcommand{\title}[1]{\def\@title{#1}}
@@ -1494,45 +1493,65 @@
   \end{tikzpicture}%
 }
 
-\newcommand{\@titlepagepl}{
+\newcommand{\@titlepage}{
   \thispagestyle{empty}%
   \afterpage{%
     \newgeometry{left=4.85cm, right=2.85cm, top=4.55cm, bottom=2.85cm}
     \setlength{\parindent}{0pt}
-    \@logotypepl
-    \textbf{Wydzia\l{} Informatyki i Zarz\k{a}dzania}\\
-    Kierunek studi\'ow: \@fieldofstudy\\
-    \ifx\@specialty\empty\else{Specjalno\'s\'c: \@specialty}\fi
+    \ifforcepolishlogotype\@logotypepl\else\ifpolish\@logotypepl\else\@logotypeen\fi\fi
+    \ifpolish{%
+      \textbf{Wydzia\l{} Informatyki i Zarz\k{a}dzania}\\
+      Kierunek studi\'ow: \@fieldofstudy\\
+      \ifx\@specialty\empty\else{Specjalno\'s\'c: \@specialty}\fi
+    }\else{%
+      \textbf{Faculty of Computer Science and Management}\\
+      Field of study: \@fieldofstudy\\
+      \ifx\@specialty\empty\else{Specialty: \@specialty}\fi
+    }\fi
     \hrule height 0pt
     \vspace{\fill}
     \hrule height 0pt
-    \centering
-    \large Praca dyplomowa
-    \ifengineering{--- in\.zynierska}\else
-      \ifbachelors{--- licencjacka}\else
-        \ifmasters{--- magisterska}\else
-          \ClassWarning{wizthesis}{No thesis type specified in the options of the \string\documentclass, use either engineering, bachelors or masters}
+    \centering\large\ifpolish{%
+      Praca dyplomowa
+      \ifengineering{--- in\.zynierska}\else
+        \ifbachelors{--- licencjacka}\else
+          \ifmasters{--- magisterska}\else
+            \ClassError{wizthesis}{No thesis type specified}{The thesis type has not been specified in the options of the document class. Please use either engineering, bachelors or masters option.}
+          \fi
         \fi
       \fi
-    \fi \\
+    }\else{%
+      \ifengineering{Engineering Thesis}\else
+        \ifbachelors{Bachelor Thesis}\else
+          \ifmasters{Master's Thesis}\else
+            \ClassError{wizthesis}{No thesis type specified}{The thesis type has not been specified in the options of the document class. Please use either engineering, bachelors or masters option.}
+          \fi
+        \fi
+      \fi
+    }\fi\\
     \hrule height 0pt
-    \vspace{\fill}%
+    \vspace{\fill}
     \hrule height 0pt
     \ifx\@title\empty{\ClassError{wizthesis}{No title provided}{The title string has not been set in the preable. Please use the title command to set it.}}\fi
     \StrLen{\string\@title}[\@titlelength]
     \ifthenelse{\@titlelength > \@titlelengthlimit}{
-      \large\textbf{\MakeUppercase{\@title}}\\
+      \large\textbf{\MakeUppercase{\@title}}
     }{
-      \Large\textbf{\MakeUppercase{\@title}}\\
-    }
+      \Large\textbf{\MakeUppercase{\@title}}
+    }\\
     \hrule height 0pt
     \vspace{\fill}
     \hrule height 0pt
+    \ifx\@author\empty{\ClassError{wizthesis}{No author provided}{The author string has not been set in the preable. Please use the author command to set it.}}\fi
     \large\@author
     \hrule height 0pt
     \vspace{\fill}
     \begin{flushright}
-      \small s\l{}owa kluczowe:\\[1ex]
+      \small\ifpolish{%
+        s\l{}owa kluczowe:
+      }\else{%
+        keywords:
+      }\fi\\[1ex]
       \begin{minipage}{7cm}
         % Use \string to \StrLen text containing some non-UTF8 characters with the newtxtext package
         \StrLen{\string\@keywords}[\@keywordslength]
@@ -1544,7 +1563,11 @@
       \end{minipage}
     \end{flushright}
     \begin{flushleft}
-      \small kr\'otkie streszczenie:\\[1ex]
+      \small\ifpolish{%
+        kr\'otkie streszczenie
+      }\else{%
+        short summary:
+      }\fi\\[1ex]
       \StrLen{\string\@summary}[\@summarylength]
       \ifthenelse{\@summarylength > \@summarylengthlimitb}{
         \parbox{\textwidth}{\scriptsize\@summary}
@@ -1559,7 +1582,11 @@
     \hrule height 0pt
     \begin{tabular}{|m{2.35cm}|C{10cm}|}
       \hline
-      \multirow{2}[b 1]{*}{\parbox{2.35cm}{\centering\footnotesize Opiekun pracy\\dyplomowej}}
+      \multirow{2}[b 1]{*}{\parbox{2.35cm}{\centering\footnotesize\ifpolish{%
+        Opiekun pracy\\dyplomowej
+      }\else{%
+        Supervisor
+      }\fi}}
       &
       \ifx\@supervisor\empty{
         \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{260pt}}\bigstrut
@@ -1568,128 +1595,28 @@
       }\fi
       \\
       \cline{2-2}
-      & \footnotesize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko \\
-      \hline
-    \end{tabular}\par
-    \vspace{0.4cm}
-    {\small Ostateczna ocena za prac\c{e} dyplomow\k{a}}
-    \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
-      \hline
-      \multirow{2}[b 1]{*}{\parbox{2.35cm}{\centering\scriptsize Przewodnicz\k{a}cy\\Komisji egzaminu\\dyplomowego}}
       &
-      \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{150pt}}\bigstrut
-      &
-      \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{32pt}}\bigstrut
-      &
-      \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{56pt}}\bigstrut
-      \\
-      \cline{2-4}
-      & \footnotesize Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko & \footnotesize ocena & \footnotesize podpis \\
-      \hline
-    \end{tabular}
-    \hrule height 0pt
-    \footnotesize
-    \begin{flushleft}
-      Do cel\'ow archiwalnych prac\c{e} dyplomow\k{a} zakwalifikowano do:*
-      \vspace{-1ex}
-      \begin{enumerate}
-        \itemsep0em
-        \item[a)] kategorii A (akta wieczyste)
-        \item[b)] kategorii BE 50 (po 50 latach podlegaj\k{a}ce ekspertyzie)
-      \end{enumerate}
-      \vspace{-1ex}
-      * niepotrzebne skre\'sli\'c
-    \end{flushleft}
-    \begin{flushright}
-      \boxed{~~~\textrm{piecz\k{a}tka wydzia\l{}owa}~~~}
-    \end{flushright}
-    \centering\large Wroc\l{}aw, rok \the\year
-    \clearpage
-  }
-}
-
-\newcommand{\@titlepageen}{
-  \thispagestyle{empty}%
-  \afterpage{%
-    \newgeometry{left=4.85cm, right=2.85cm, top=4.55cm, bottom=2.85cm}
-    \setlength{\parindent}{0pt}
-    \ifforcepolishlogotype\@logotypepl\else\@logotypeen\fi
-    \textbf{Faculty of Computer Science and Management}\\
-    Field of study: \@fieldofstudy\\
-    \ifx\@specialty\empty\else{Specialty: \@specialty}\fi
-    \hrule height 0pt
-    \vspace{\fill}
-    \hrule height 0pt
-    \centering
-    \large
-    \ifengineering{Engineering Thesis}\else
-      \ifbachelors{Bachelor Thesis}\else
-        \ifmasters{Master's Thesis}\else
-          \ClassWarning{wizthesis}{No thesis type specified in the options of the \string\documentclass, use either engineering, bachelors or masters}
-        \fi
-      \fi
-    \fi \\
-    \hrule height 0pt
-    \vspace{\fill}%
-    \hrule height 0pt
-    \ifx\@title\empty{\ClassError{wizthesis}{No title provided}{The title string has not been set in the preable. Please use the title command to set it.}}\fi
-    \StrLen{\string\@title}[\@titlelength]
-    \ifthenelse{\@titlelength > \@titlelengthlimit}{
-      \large\textbf{\MakeUppercase{\@title}}\\
-    }{
-      \Large\textbf{\MakeUppercase{\@title}}\\
-    }
-    \hrule height 0pt
-    \vspace{\fill}
-    \hrule height 0pt
-    \large\@author
-    \hrule height 0pt
-    \vspace{\fill}
-    \begin{flushright}
-      \small keywords:\\[1ex]
-      \begin{minipage}{7cm}
-        % Use \string to \StrLen text containing some non-UTF8 characters with the newtxtext package
-        \StrLen{\string\@keywords}[\@keywordslength]
-        \ifthenelse{\@keywordslength > \@keywordslengthlimit}{
-          \footnotesize\@keywords
-        }{
-          \@keywords
-        }
-      \end{minipage}
-    \end{flushright}
-    \begin{flushleft}
-      \small short summary:\\[1ex]
-      \StrLen{\string\@summary}[\@summarylength]
-      \ifthenelse{\@summarylength > \@summarylengthlimitb}{
-        \parbox{\textwidth}{\scriptsize\@summary}
-      }{
-        \ifthenelse{\@summarylength > \@summarylengthlimita}{
-          \parbox{\textwidth}{\footnotesize\@summary}
-        }{
-          \parbox{\textwidth}{\@summary}
-        }
-      }
-    \end{flushleft}
-    \hrule height 0pt
-    \begin{tabular}{|m{2.35cm}|C{10cm}|}
-      \hline
-      \multirow{2}[b 1]{*}{\parbox{2.35cm}{\centering\footnotesize Supervisor}}
-      &
-      \ifx\@supervisor\empty{
-        \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{260pt}}\bigstrut
-      }\else{
-        \normalsize\@supervisor{}\bigstrut
+      \footnotesize\ifpolish{%
+        Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko
+      }\else{%
+        Title/degree/name and surname
       }\fi
       \\
-      \cline{2-2}
-      & \footnotesize Title/degree/name and surname \\
       \hline
     \end{tabular}\par
     \vspace{0.4cm}
-    {\small The final evaluation of the thesis\vspace{2pt}}
+    {\small \ifpolish{%
+      Ostateczna ocena za prac\c{e} dyplomow\k{a}
+    }\else{%
+      The final evaluation of the thesis\vspace{2pt}
+    }\fi}
     \begin{tabular}{|m{2.35cm}|C{6cm}|C{1.15cm}|C{2cm}|}
       \hline
-      \multirow{2}[b 1]{*}{\parbox{2.35cm}{\centering\scriptsize Chairman of the \\ Diploma \\ Examination \\ Committee}}
+      \multirow{2}[b 1]{*}{\parbox{2.35cm}{\centering\scriptsize\ifpolish{%
+        Przewodnicz\k{a}cy\\Komisji egzaminu\\dyplomowego
+      }\else{%
+        Chairman of the \\ Diploma \\ Examination \\ Committee
+      }\fi}}
       &
       \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{150pt}}\bigstrut
       &
@@ -1698,26 +1625,60 @@
       \raisebox{-4pt}[0cm][0cm]{\small\dotline[2.7pt]{56pt}}\bigstrut
       \\
       \cline{2-4}
-      & \footnotesize Title/degree/name and surname & \footnotesize grade & \footnotesize signature \\
+      &
+      \footnotesize\ifpolish{%
+        Tytu\l{}/stopie\'n naukowy/imi\c{e} i nazwisko
+      }\else{%
+        Title/degree/name and surname
+      }\fi
+      &
+      \footnotesize\ifpolish{ocena}\else{grade}\fi
+      &
+      \footnotesize\ifpolish{podpis}\else{signature}\fi
+      \\
       \hline
     \end{tabular}
     \hrule height 0pt
     \footnotesize
     \begin{flushleft}
-      For the purposes of archival thesis qualified to:*
+      \ifpolish{%
+        Do cel\'ow archiwalnych prac\c{e} dyplomow\k{a} zakwalifikowano do:*
+      }\else{%
+        For the purposes of archival thesis qualified to:*
+      }\fi
       \vspace{-1ex}
       \begin{enumerate}
         \itemsep0em
-        \item[a)] category A (perpetual files)
-        \item[b)] category BE 50 (subject to expertise after 50 years)
+        \item[a)] \ifpolish{%
+          kategorii A (akta wieczyste)
+        }\else{%
+          category A (perpetual files)
+        }\fi
+        \item[b)] \ifpolish{%
+          kategorii BE 50 (po 50 latach podlegaj\k{a}ce ekspertyzie)
+        }\else{%
+          category BE 50 (subject to expertise after 50 years)
+        }\fi
       \end{enumerate}
       \vspace{-1ex}
-      * Delete as appropriate
+      \ifpolish{%
+        * niepotrzebne skre\'sli\'c
+      }\else{%
+        * Delete as appropriate
+      }\fi
     \end{flushleft}
     \begin{flushright}
-      \boxed{~~~\textrm{stamp of the faculty}~~~}
+      \boxed{~~~\textrm{\ifpolish{%
+        piecz\k{a}tka wydzia\l{}owa
+      }\else{%
+        stamp of the faculty
+      }\fi}~~~}
     \end{flushright}
-    \centering\large Wroc\l{}aw \the\year
+    \centering\large\ifpolish{%
+      Wroc\l{}aw, rok \the\year
+    }\else{%
+      Wroc\l{}aw \the\year
+    }\fi
     \clearpage
   }
 }
@@ -1729,26 +1690,17 @@
     \renewcommand\appendixpagename{Za\l{}\k{a}czniki}
     \SetupFloatingEnvironment{listing}{listname=Spis listing\'ow}
   }
-  \renewcommand{\maketitle}{
-    \pagenumbering{gobble}
-    \@titlepagepl
-    \if@openright
-      \cleardoublepage
-    \else
-      \clearpage
-    \fi
-  }
-\else
-  \renewcommand{\maketitle}{
-    \pagenumbering{gobble}
-    \@titlepageen
-    \if@openright
-      \cleardoublepage
-    \else
-      \clearpage
-    \fi
-  }
 \fi
+
+\renewcommand{\maketitle}{
+  \pagenumbering{gobble}
+  \@titlepage
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+}
 
 \pagestyle{plain}
 
