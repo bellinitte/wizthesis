@@ -42,7 +42,7 @@ To set up the information about the thesis, use the following commands in the pr
 - `\title` &ndash; title of the thesis,
 - `\supervisor` (*optional*) &ndash; name of the thesis' supervisor,
 - `\fieldofstudy` &ndash; author's field of study,
-- `\specialty` (*optional*) &ndash; author's specialty, if any. Defaults to "`---`",
+- `\specialty` (*optional*) &ndash; author's specialty, if any,
 - `\keywords` &ndash; thesis' keywords. Should not be longer than 150 characters,
 - `\summary` &ndash; short summary of the thesis. Should not be longer than 530 characters.
 
