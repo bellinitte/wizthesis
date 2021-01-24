@@ -1664,6 +1664,7 @@
         * Delete as appropriate
       }\fi
     \end{flushleft}
+    \normalsize
     \begin{flushright}
       \boxed{~~~\textrm{\ifpolish{%
         piecz\k{a}tka wydzia\l{}owa
